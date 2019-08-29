@@ -35,7 +35,8 @@ export const config: Config = {
         "calcite-date-picker",
         "calcite-date-month",
         "calcite-date-month-header",
-        "calcite-date-day"
+        "calcite-date-day",
+        "calcite-date-range"
       ]
     },
     { components: ["calcite-tree", "calcite-tree-item"] }
