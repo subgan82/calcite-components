@@ -1,0 +1,24 @@
+::slotted(calcite-date-picker) {
+  border: none;
+}
+::slotted(calcite-date-picker[expanded]) {
+    border: none;
+    box-shadow: none;
+}
+
+
+:host([expanded]) {
+    ::slotted(calcite-date-picker[slot="end"]){
+        padding: 0.5rem;
+        border-left: 1px solid $blk-030;
+    }
+    ::slotted(calcite-date-picker[slot="start"]){
+        padding: 0.5rem;
+    }
+
+    background-color: $blk-000;
+    border: 1px solid $blk-030;
+    box-shadow: $shadow-2;
+    display: inline-flex;
+}
+  

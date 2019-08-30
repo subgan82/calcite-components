@@ -34,7 +34,7 @@ export class CalciteDateDay {
   /**
    * day of the month to be shown.
    */
-  @Prop() day: number = 0;
+  @Prop() day: number | "" = 0;
   /**
    * Enables tells whether day enabled for the user click.
    */

@@ -32,10 +32,10 @@ export const config: Config = {
     { components: ["calcite-modal"] },
     {
       components: [
-        "calcite-date-picker",
         "calcite-date-month",
         "calcite-date-month-header",
         "calcite-date-day",
+        "calcite-date-picker",
         "calcite-date-range"
       ]
     },

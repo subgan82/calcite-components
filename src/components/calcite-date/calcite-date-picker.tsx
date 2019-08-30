@@ -52,6 +52,32 @@ export class CalciteDatePicker {
    */
   @Prop() locale?: string = "en-US";
   /**
+   * @internal
+   * used for date ranger to not close the date picker.
+   */
+  @Prop() autoClose?: boolean = true;
+  /**
+   * @internal
+   * shows previous month days.
+   */
+  @Prop({ reflect: true }) showPreviousMonth?: boolean = true;
+  /**
+   * @internal
+   * shows next month days.
+   */
+  @Prop({ reflect: true }) showNextMonth?: boolean = true;
+
+  /**
+   * @internal
+   * shows next month days.
+   */
+  @Prop({ reflect: true }) startDate?: Date = undefined;
+  /**
+   * @internal
+   * shows next month days.
+   */
+  @Prop({ reflect: true }) endDate?: Date = undefined;
+  /**
    * Trigger calcite date change when a user changes the date.
    */
   @Event() calciteDateChange: EventEmitter;
@@ -61,7 +87,7 @@ export class CalciteDatePicker {
   /**
    * Expanded state of the calander.
    */
-  @State() showCalendar: boolean = false;
+  @Prop({reflect: true}) showCalendar: boolean = false;
 
   /**
    * Active date.
@@ -134,6 +160,10 @@ export class CalciteDatePicker {
               activeDate={this.activeDate}
               startOfWeek={this.startOfWeek}
               locale={this.locale}
+              showPreviousMonth={this.showPreviousMonth}
+              showNextMonth={this.showNextMonth}
+              startDate={this.startDate}
+              endDate={this.endDate}
               onCalciteDateSelect={evt => this.setDate(evt.target)}
               onCalciteActiveDateChange={evt => this.setActiveDate(evt.target)}
             />
@@ -153,7 +183,9 @@ export class CalciteDatePicker {
   }
 
   private closeCalendar() {
-    this.showCalendar = true;
+    if(this.autoClose){
+      this.showCalendar = false;
+    }
   }
 
   private getMonth() {

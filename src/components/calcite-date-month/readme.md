@@ -7,16 +7,20 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                                                                                  | Type     | Default     |
-| -------------- | --------------- | -------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `activeDate`   | --              | Date currently active.                                                                       | `Date`   | `undefined` |
-| `locale`       | `locale`        | pass the locale in which user wants to show the date.                                        | `string` | `"en-US"`   |
-| `max`          | --              | Maximum date of the calendar above which is disabled.                                        | `Date`   | `undefined` |
-| `min`          | --              | Minimum date of the calendar below which is disabled.                                        | `Date`   | `undefined` |
-| `month`        | `month`         | Month number starting 0 as January for which the calendar is shown.                          | `number` | `0`         |
-| `selectedDate` | --              | Already selected date.                                                                       | `Date`   | `undefined` |
-| `startOfWeek`  | `start-of-week` | Sun by default 0: Sunday 1: Monday 2: Tuesday 3: Wednesday 4: Thursday 5: Friday 6: Saturday | `number` | `0`         |
-| `year`         | `year`          | Year for which the calendar is shown.                                                        | `number` | `0`         |
+| Property            | Attribute             | Description                                                                                  | Type      | Default     |
+| ------------------- | --------------------- | -------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `activeDate`        | --                    | Date currently active.                                                                       | `Date`    | `undefined` |
+| `endDate`           | --                    | End date of the range date that is selected.                                                 | `Date`    | `null`      |
+| `locale`            | `locale`              | pass the locale in which user wants to show the date.                                        | `string`  | `"en-US"`   |
+| `max`               | --                    | Maximum date of the calendar above which is disabled.                                        | `Date`    | `undefined` |
+| `min`               | --                    | Minimum date of the calendar below which is disabled.                                        | `Date`    | `undefined` |
+| `month`             | `month`               | Month number starting 0 as January for which the calendar is shown.                          | `number`  | `0`         |
+| `selectedDate`      | --                    | Already selected date.                                                                       | `Date`    | `undefined` |
+| `showNextMonth`     | `show-next-month`     | shows next month days                                                                        | `boolean` | `true`      |
+| `showPreviousMonth` | `show-previous-month` | shows previous month days                                                                    | `boolean` | `true`      |
+| `startDate`         | --                    | Start of the date that is selected.                                                          | `Date`    | `null`      |
+| `startOfWeek`       | `start-of-week`       | Sun by default 0: Sunday 1: Monday 2: Tuesday 3: Wednesday 4: Thursday 5: Friday 6: Saturday | `number`  | `0`         |
+| `year`              | `year`                | Year for which the calendar is shown.                                                        | `number`  | `0`         |
 
 
 ## Events

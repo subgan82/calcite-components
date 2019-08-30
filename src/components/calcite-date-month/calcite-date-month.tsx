@@ -81,7 +81,23 @@ export class CalciteDateMonth {
    * pass the locale in which user wants to show the date.
    */
   @Prop() locale: string = "en-US";
-
+  /**
+   * 
+   * shows previous month days
+   */
+  @Prop() showPreviousMonth?: boolean = true;
+  /**
+   * shows next month days
+   */
+  @Prop() showNextMonth?: boolean = true;
+  /**
+   * Start of the date that is selected.
+   */
+  @Prop() startDate?: Date = null;
+  /**
+   * End date of the range date that is selected.
+   */
+  @Prop() endDate?: Date = null;
   //--------------------------------------------------------------------------
   //
   //  Events
@@ -114,7 +130,7 @@ export class CalciteDateMonth {
       splitDays = [],
       days = [
         ...prevMonDays.map(prev => (
-          <calcite-date-day day={prev} enable={false} />
+          <calcite-date-day day={this.showPreviousMonth ? prev : ""} enable={false} />
         )),
         ...curMonDays.map(cur => (
           <calcite-date-day
@@ -126,7 +142,7 @@ export class CalciteDateMonth {
           />
         )),
         ...nextMonDays.map(next => (
-          <calcite-date-day day={next + 1} enable={false} />
+          <calcite-date-day day={this.showNextMonth ? next + 1 : ""} enable={false} />
         ))
       ];
 
@@ -283,6 +299,9 @@ export class CalciteDateMonth {
 
   private isSelectedDate(year, month, day) {
     let date = new Date(year, month, day);
+    if(this.startDate && this.endDate && (this.startDate <= date && this.endDate >= date)){
+      return true;
+    }
     return date.toDateString() === this.selectedDate.toDateString();
   }
 
@@ -325,10 +344,6 @@ export class CalciteDateMonth {
       days = [],
       prevMonDays = new Date(year, month, 0).getDate();
 
-    if (startDay === this.startOfWeek) {
-      return days;
-    }
-
     for (let i = (6 - this.startOfWeek + startDay) % 7; i >= 0; i--) {
       days.push(prevMonDays - i);
     }
@@ -337,11 +352,8 @@ export class CalciteDateMonth {
   }
 
   private getNextMonthdays(month, year) {
-    let endDay = new Date(year, month + 1, 0).getDay(),
-      days = [];
-    if (endDay === (this.startOfWeek + 6) % 7) {
-      return days;
-    }
+    let endDay = new Date(year, month + 1, 0).getDay();
+
 
     return [...Array((6 - (endDay - this.startOfWeek)) % 7).keys()];
   }
