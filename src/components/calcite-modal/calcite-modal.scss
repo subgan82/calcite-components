@@ -1,13 +1,6 @@
 :host {
-  --calcite-modal-background: #{$blk-000};
-  --calcite-modal-hover: #{$blk-010};
-  --calcite-modal-pressed: #{$blk-020};
-  --calcite-modal-header-text: #{$blk-220};
-  --calcite-modal-body-text: #{$blk-220};
   --calcite-modal-scrim: rgba(0, 0, 0, 0.75);
   --calcite-modal-border: #{$blk-010};
-  --calcite-modal-red: #{$ui-red};
-  --calcite-modal-blue: #{$ui-blue};
   position: fixed;
   top: 0;
   right: 0;
@@ -17,7 +10,7 @@
   justify-content: center;
   align-items: center;
   overflow-y: hidden;
-  color: var(--calcite-modal-body-text);
+  color: var(--calcite-global-ui-text-2);
   opacity: 0;
   visibility: hidden !important;
   background: var(--calcite-modal-scrim);
@@ -26,23 +19,14 @@
 }
 
 :host([theme="dark"]) {
-  --calcite-modal-background: #{$blk-190};
-  --calcite-modal-hover: #{$blk-200};
-  --calcite-modal-pressed: #{$blk-210};
-  --calcite-modal-header-text: #{$blk-000};
-  --calcite-modal-body-text: #{$blk-010};
-  --calcite-modal-border: #{$blk-200};
-  --calcite-modal-red: #{$ui-red-dark};
-  --calcite-modal-blue: #{$ui-blue-dark};
+  --calcite-modal-border: #{$ui-foreground-hover-dark};
 }
 
 .modal {
   box-sizing: border-box;
-  max-height: 80vh;
   z-index: 102;
   float: none;
   text-align: left;
-  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
@@ -52,7 +36,9 @@
   transition: transform 300ms $easing-function, visibility 0ms linear 300ms,
     opacity 300ms $easing-function;
   transform: translate3d(0, 20px, 0);
-  box-shadow: $shadow-2;
+  background-color: var(--calcite-global-ui-foreground);
+  box-shadow: $shadow-2--press;
+  border-radius: 2px;
   margin: $baseline;
   width: 100%;
 }
@@ -76,27 +62,18 @@
   text-align: right;
 }
 
-:host([theme="dark"]) .modal {
-  border: 1px solid $blk-210;
-}
-
-focus-trap {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-}
-
 /**
  * Header
  */
 .modal__header {
-  background-color: var(--calcite-modal-background);
+  background-color: var(--calcite-global-ui-foreground);
   flex: 0;
   display: flex;
   max-width: 100%;
   min-width: 0;
   z-index: 2;
   border-bottom: 1px solid var(--calcite-modal-border);
+  border-radius: 2px 2px 0 0;
 }
 
 .modal__close {
@@ -109,19 +86,24 @@ focus-trap {
   background-color: transparent;
   -webkit-appearance: none;
   border: none;
-  color: var(--calcite-modal-body-text);
+  color: var(--calcite-global-ui-text-1);
   outline: none;
   cursor: pointer;
+  border-radius: 0 2px 0 0;
   svg {
     pointer-events: none;
   }
   &:hover,
   &:focus {
-    background-color: var(--calcite-modal-hover);
+    background-color: var(--calcite-global-ui-foreground-hover);
   }
   &:active {
-    background-color: var(--calcite-modal-pressed);
+    background-color: var(--calcite-global-ui-foreground-pressed);
   }
+}
+
+:host([dir="rtl"]) .modal__close {
+  border-radius: 2px 0 0 0;
 }
 
 .modal__title {
@@ -133,11 +115,11 @@ focus-trap {
   min-width: 0;
 }
 
-slot[name="header"]::slotted(*) {
+@include slotted("header", "*") {
   margin: 0;
   font-weight: 400;
   @include font-size(2);
-  color: var(--calcite-modal-header-text);
+  color: var(--calcite-global-ui-text-1);
 }
 
 /**
@@ -148,12 +130,14 @@ slot[name="header"]::slotted(*) {
   padding: $baseline;
   height: 100%;
   overflow: auto;
+  max-height: calc(100vh - 12rem);
+  overflow-y: auto;
   display: block;
-  background-color: var(--calcite-modal-background);
+  background-color: var(--calcite-global-ui-foreground);
   z-index: 1;
 }
 
-slot[name="content"]::slotted(*) {
+@include slotted("content", "*") {
   @include font-size(0);
 }
 
@@ -161,31 +145,35 @@ slot[name="content"]::slotted(*) {
  * Footer
  */
 .modal__footer {
-  background-color: var(--calcite-modal-background);
-  flex: 0;
   display: flex;
+  flex: 0;
   justify-content: flex-end;
   padding: $baseline/1.25 $baseline * 0.75;
+  margin-top: auto;
+  box-sizing: border-box;
+  border-radius: 0 0 2px 2px;
+  width: 100%;
+  background-color: var(--calcite-global-ui-foreground);
   border-top: 1px solid var(--calcite-modal-border);
   z-index: 2;
 }
 
-.modal__footer--hide-back slot[name="back"],
-.modal__footer--hide-secondary slot[name="secondary"] {
+.modal__footer--hide-back .modal__back,
+.modal__footer--hide-secondary .modal__secondary {
   display: none;
 }
 
-slot[name="back"] {
+.modal__back {
   display: block;
   margin-right: auto;
 }
 
-:host([dir="rtl"]) slot[name="back"] {
+:host([dir="rtl"]) .modal__back {
   margin-left: auto;
   margin-right: unset;
 }
 
-slot[name="secondary"] {
+.modal__secondary {
   display: block;
   margin: 0 $baseline * 0.25;
 }
@@ -197,7 +185,7 @@ slot[name="primary"] {
 /**
  * Sizes
  */
-@mixin modal-size ($size, $width) {
+@mixin modal-size($size, $width) {
   :host([size="#{$size}"]) {
     .modal {
       max-width: $width;
@@ -211,9 +199,15 @@ slot[name="primary"] {
         width: 100vw;
         max-width: 100vw;
         margin: 0;
+        border-radius: 0;
       }
       .modal__content {
-        flex: 1 1 auto;
+        flex: 1 1 0;
+        max-height: unset;
+      }
+      .modal__header,
+      .modal__footer {
+        flex: inherit;
       }
     }
     :host([size="#{$size}"][docked]) {
@@ -227,7 +221,7 @@ slot[name="primary"] {
 }
 
 @include modal-size("small", 32rem);
-@include modal-size("medium", 64rem);
+@include modal-size("medium", 48rem);
 @include modal-size("large", 94rem);
 
 /**
@@ -246,11 +240,21 @@ slot[name="primary"] {
   .modal__content {
     flex: 1 1 auto;
   }
+  .modal__header,
+  .modal__footer {
+    flex: inherit;
+  }
 }
 
 :host(.is-active[size="fullscreen"]) {
   .modal {
     transform: translate3D(0, 0, 0) scale(1);
+  }
+  .modal__header {
+    border-radius: 0;
+  }
+  .modal__footer {
+    border-radius: 0;
   }
 }
 
@@ -263,6 +267,22 @@ slot[name="primary"] {
   }
   .modal__content {
     height: auto;
+    flex: 1;
+  }
+  @media screen and (max-width: $viewport-medium) {
+    .modal {
+      border-radius: 2px 2px 0 0;
+    }
+
+    .modal__close {
+      border-radius: 0 2px 0 0;
+    }
+  }
+}
+
+@media screen and (max-width: $viewport-medium) {
+  :host([docked][dir="rtl"]) .modal__close {
+    border-radius: 2px 0 0 0;
   }
 }
 
@@ -271,15 +291,20 @@ slot[name="primary"] {
  */
 :host([color="red"]) {
   .modal {
-    border-top: 4px solid var(--calcite-modal-red);
-    border-radius: 2px 2px 0 0;
+    border-top: 4px solid var(--calcite-global-ui-red);
   }
 }
 
 :host([color="blue"]) {
   .modal {
-    border-top: 4px solid var(--calcite-modal-blue);
-    border-radius: 2px 2px 0 0;
+    border-top: 4px solid var(--calcite-global-ui-blue);
+  }
+}
+
+:host([color="red"]),
+:host([color="blue"]) {
+  .modal__header {
+    border-radius: 0;
   }
 }
 
@@ -287,7 +312,7 @@ slot[name="primary"] {
  * Tablet
  */
 @media screen and (max-width: $viewport-medium) {
-  slot[name="header"]::slotted(*) {
+  @include slotted("header", "*") {
     @include font-size(1);
   }
   .modal__title {
@@ -312,8 +337,9 @@ slot[name="primary"] {
   .modal__footer {
     flex-direction: column;
   }
-  slot[name="back"],
-  slot[name="secondary"] {
-    margin: 0 0 $baseline * 0.25 0;
+  .modal__back,
+  .modal__secondary {
+    margin: 0;
+    margin-bottom: $baseline * 0.25;
   }
 }

@@ -13,7 +13,7 @@
       padding: 1rem;
     }
   </style>
-  <link rel="stylesheet" href="https://webapps-cdn.esri.com/CDN/fonts/v1.3.1/fonts.css" />
+  <link rel="stylesheet" href="https://webapps-cdn.esri.com/CDN/fonts/v1.4.1/fonts.css" />
   <link rel="stylesheet" href="/build/calcite.css" />
   <script type="module" src="build/calcite.esm.js"></script>
   <script nomodule src="build/calcite.js"></script>
@@ -31,14 +31,17 @@
         <calcite-tab-title>Alerts</calcite-tab-title>
         <calcite-tab-title>Loader</calcite-tab-title>
         <calcite-tab-title>Modals</calcite-tab-title>
+        <calcite-tab-title>Popover</calcite-tab-title>
         <calcite-tab-title>Progress</calcite-tab-title>
         <calcite-tab-title>Radio Groups</calcite-tab-title>
         <calcite-tab-title>Slider</calcite-tab-title>
         <calcite-tab-title>Switch and Checkbox</calcite-tab-title>
+        <calcite-tab-title>Tooltip</calcite-tab-title>
         <calcite-tab-title>Buttons</calcite-tab-title>
         <calcite-tab-title>Date picker</calcite-tab-title>
         <calcite-tab-title>Dropdown</calcite-tab-title>
         <calcite-tab-title>Tree</calcite-tab-title>
+        <calcite-tab-title>Accordion</calcite-tab-title>
       </calcite-tab-nav>
 
       <calcite-tab is-active>
@@ -366,10 +369,11 @@
         <calcite-modal class="js-modal-1" size="small">
           <h3 slot="header">Small Modal</h3>
           <div slot="content">
-            <p>The small modal is perfect for short confirmation dialogs or very compact interfaces with few elements.
+            <p>
+              The small modal is perfect for short confirmation dialogs or very compact interfaces with few elements.
             </p>
           </div>
-          <calcite-button slot="back" color="light" appearance="outline"
+          <calcite-button slot="back" width="full" color="light" appearance="outline"
             icon="M15.707 20h-1.414l-7.5-7.5 7.5-7.5h1.414l-7.5 7.5z" width="full">Back</calcite-button>
           <calcite-button slot="secondary" width="full" appearance="outline">Cancel</calcite-button>
           <calcite-button slot="primary" width="full">Save</calcite-button>
@@ -463,6 +467,14 @@
           </div>
           <calcite-button slot="primary">OK</calcite-button>
         </calcite-modal>
+        <calcite-modal class="js-modal-10" disable-escape>
+          <h3 slot="header">Modal title</h3>
+          <div slot="content">
+            <p>This modal has <code>disable-escape</code> set, so pressing the escape key will not dismiss it.</p>
+          </div>
+          <calcite-button slot="secondary" width="full" appearance="outline">Cancel</calcite-button>
+        </calcite-modal>
+
         <ul>
           <li>
             <calcite-button appearance="inline" onClick="openModal('.js-modal-1')">Small Modal</calcite-button>
@@ -491,6 +503,11 @@
           <li>
             <calcite-button appearance="inline" onClick="openModal('.js-modal-9')">Dark Theme</calcite-button>
           </li>
+          <li>
+            <calcite-button appearance="inline" onClick="openModal('.js-modal-10')">Close on escape press disabled
+            </calcite-button>
+          </li>
+
         </ul>
         <script>
           function openModal(selector) {
@@ -500,10 +517,157 @@
       </calcite-tab>
 
       <calcite-tab>
+        <h1>CalcitePopover</h1>
+
+        <calcite-popover placement="auto" reference-element="popover-button" id="popover" close-button>
+          <img slot="image" src="https://placem.at/places?w=200&txt=0" />
+          <div style="padding:12px 16px;">Here kitty kitty!
+          </div>
+        </calcite-popover>
+
+        <calcite-popover reference-element="popover-button-two" placement="right-start" id="popover-two"
+          add-click-handle>
+          <div style="padding:12px 16px">Hello! I am some popover content!</div>
+        </calcite-popover>
+
+        <calcite-popover reference-element="popover-button-three" placement="right-end" id="popover-three"
+          add-click-handle close-button>
+          <div style="padding:12px 16px">
+            <b>I am a title!</b> <br>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+              scrambled it to make a type specimen book.
+            </p>
+            <calcite-button title="Inline button" appearance="inline" scale=>I am an inline button</calcite-button>
+          </div>
+        </calcite-popover>
+
+        <calcite-popover reference-element="popover-button-four" placement="auto" id="popover-four" add-click-handle
+          close-button>
+          <div style="padding:12px 16px">I am a popover with a close button!</div>
+        </calcite-popover>
+
+        <calcite-popover theme="dark" reference-element="popover-button-five" placement="bottom" id="popover-five"
+          add-click-handle close-button>
+          <img slot="image" src="https://placem.at/places?w=200&txt=0" />
+          <div style="padding:12px 16px;">Here kitty kitty!
+          </div>
+        </calcite-popover>
+
+        <calcite-popover theme="dark" reference-element="popover-button-six" placement="top" id="popover-six"
+          add-click-handle>
+          <div style="padding:12px 16px">Hello! I am some popover content!</div>
+        </calcite-popover>
+
+        <calcite-popover theme="dark" reference-element="popover-button-seven" placement="auto" id="popover-seven"
+          add-click-handle close-button>
+          <div style="padding:12px 16px">
+            <b>I am a title!</b> <br>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+              scrambled it to make a type specimen book.
+            </p>
+            <calcite-button theme="dark" title="Inline button" appearance="inline" scale=>I am an inline button
+            </calcite-button>
+          </div>
+        </calcite-popover>
+
+        <calcite-popover theme="dark" reference-element="popover-button-eight" placement="auto" id="popover-eight"
+          add-click-handle close-button>
+          <div style="padding:12px 16px">I am a popover with a close button!</div>
+        </calcite-popover>
+
+        <calcite-popover theme="dark" reference-element="popover-button-nine" placement="auto" id="popover-nine"
+          add-click-handle>
+          <div style="padding:12px 16px">I am a popover with a close button!</div>
+        </calcite-popover>
+
+        <style>
+          .popover-list {
+            list-style: none;
+            margin: 0;
+            padding: 20px 10px 220px 10px;
+          }
+
+          .popover-list li {
+            margin: 30px 0;
+          }
+        </style>
+
+        <ul class="popover-list">
+          <li>
+            <calcite-button id="popover-button-two" icon="M15.707 20h-1.414l-7.5-7.5 7.5-7.5h1.414l-7.5 7.5z">
+              Clickable popover</calcite-button>
+          </li>
+          <li>
+            <calcite-button id="popover-button-four" icon="M15.707 20h-1.414l-7.5-7.5 7.5-7.5h1.414l-7.5 7.5z">
+              With close button</calcite-button>
+          </li>
+          <li>
+            <calcite-button id="popover-button-three" icon="M15.707 20h-1.414l-7.5-7.5 7.5-7.5h1.414l-7.5 7.5z">
+              Title, content & CTA</calcite-button>
+          </li>
+          <li>
+            <calcite-button id="popover-button" icon="M15.707 20h-1.414l-7.5-7.5 7.5-7.5h1.414l-7.5 7.5z">
+              Popover with picture</calcite-button>
+          </li>
+        </ul>
+
+        <ul class="popover-list demo-background-dark">
+          <li>
+            <calcite-button id="popover-button-six" icon="M15.707 20h-1.414l-7.5-7.5 7.5-7.5h1.414l-7.5 7.5z">
+              Clickable popover</calcite-button>
+          </li>
+          <li>
+            <calcite-button id="popover-button-eight" icon="M15.707 20h-1.414l-7.5-7.5 7.5-7.5h1.414l-7.5 7.5z">
+              With close button</calcite-button>
+          </li>
+          <li>
+            <calcite-button id="popover-button-seven" icon="M15.707 20h-1.414l-7.5-7.5 7.5-7.5h1.414l-7.5 7.5z">
+              Title, content & CTA</calcite-button>
+          </li>
+          <li>
+            <calcite-button id="popover-button-five" icon="M15.707 20h-1.414l-7.5-7.5 7.5-7.5h1.414l-7.5 7.5z">
+              Popover with picture</calcite-button>
+          </li>
+        </ul>
+
+        <script>
+          var popover = document.getElementById("popover");
+          var popoverButton = document.getElementById("popover-button");
+          popover.referenceElement = popoverButton;
+          popoverButton.addEventListener("click", function () {
+            popover.toggle();
+          });
+        </script>
+      </calcite-tab>
+
+      <calcite-tab>
+        <h1>Indeterminate</h1>
         <calcite-progress type="indeterminate">
-          <h1>Hello World!</h1>
+          <br>
         </calcite-progress>
-        <calcite-progress type="determinate" value="0.5" text="Initializing flux capacitor&hellip;"></calcite-progress>
+        <br>
+        <br>
+        <h1>Determinate</h1>
+        <calcite-progress type="determinate" value="0.5" text="50% Complete (optional text)"></calcite-progress>
+        <br>
+        <br>
+        <br>
+
+        <div class="demo-background-dark">
+          <h1>Indeterminate</h1>
+          <calcite-progress theme="dark" type="indeterminate">
+            <br>
+          </calcite-progress>
+          <br>
+          <br>
+          <h1>Determinate</h1>
+          <calcite-progress theme="dark" type="determinate" value="0.5" text="50% Complete (optional text)">
+          </calcite-progress>
+        </div>
       </calcite-tab>
 
       <calcite-tab>
@@ -696,7 +860,7 @@
             </script>
           </label>
         </div>
-
+        <br />
         <div>
           <calcite-switch>
             <input id="proxySwitchCheckbox" type="checkbox" />
@@ -717,19 +881,86 @@
             })
           </script>
         </div>
-
+        <br />
         <div>
           <label>
-            <calcite-switch switched="true" color="red"> </calcite-switch>
-            Red switch
+            <calcite-switch scale="s" switched="true" color="red"> </calcite-switch>
+            Red switch scale small
           </label>
         </div>
-
+        <br />
+        <div>
+          <label>
+            <calcite-switch scale="m" switched="true" color="red"> </calcite-switch>
+            Red switch scale medium
+          </label>
+        </div>
+        <br />
+        <div>
+          <label>
+            <calcite-switch scale="l" switched="true" color="red"> </calcite-switch>
+            Red switch scale large
+          </label>
+        </div>
+        <br />
         <div>
           <calcite-switch></calcite-switch>
           Switch with no wrapping <code>label</code>.
         </div>
+        <br />
+        <div class="demo-background-dark">
+          <div>
+            <label>
+              <calcite-switch theme="dark" id="basicSwitch" switched="true"></calcite-switch>
+              Without a proxy <code>input</code> element.
+              <script>
+                var basicSwitch = document.getElementById("basicSwitch");
 
+                basicSwitch.addEventListener("calciteSwitchChange", function (
+                  e
+                ) {
+                  console.log(
+                    "Basic switch changed by <calcite-switch>",
+                    e.target.switched
+                  );
+                });
+              </script>
+            </label>
+          </div>
+          <br />
+          <div>
+            <calcite-switch theme="dark">
+              <input id="proxySwitchCheckbox" type="checkbox" />
+            </calcite-switch>
+            <span id='proxySwitchSpan'>
+              With a proxy <code>input</code> element and changes on click.
+            </span>
+            <script>
+              var proxySwitchSpan = document.getElementById(
+                "proxySwitchSpan"
+              );
+              var proxySwitchCheckbox = document.getElementById('proxySwitchCheckbox');
+
+              proxySwitchSpan.addEventListener('click', function () {
+                proxySwitchCheckbox.hasAttribute('checked') ?
+                  proxySwitchCheckbox.removeAttribute('checked') :
+                  proxySwitchCheckbox.setAttribute('checked', '')
+              })
+            </script>
+          </div>
+          <br />
+          <div>
+            <label>
+              <calcite-switch theme="dark" switched="true" color="red"> </calcite-switch>
+              Red switch
+            </label>
+          </div>
+          <br />
+          <div>
+            <calcite-switch theme="dark"></calcite-switch>
+            Switch with no wrapping <code>label</code>.
+          </div>
+        </div>
         <h2>calcite-checkbox</h2>
 
         <div>
@@ -841,17 +1072,103 @@
       </calcite-tab>
 
       <calcite-tab>
-        <h3>Normal Lockup</h3>
+        <h1>CalciteTooltip</h1>
 
+        <calcite-tooltip placement="auto" id="tooltip">This is the message of the tooltip</calcite-tooltip>
+
+        <calcite-tooltip placement="top" id="tooltip-two" reference-element="tooltip-button-two">Lorem Ipsum is simply
+          of the printing and typesetting industry. Lorem Ipsum has been the industry's standard printer of type and
+          scrambled it to make a type specimen book.</calcite-tooltip>
+
+        <calcite-tooltip placement="right-start" reference-element="tooltip-button-four">Lorem Ipsum is simply of the
+          printing and typesetting industry. Lorem Ipsum has been the industry's standard printer of type and scrambled
+          it to make a type specimen book.
+        </calcite-tooltip>
+
+
+        <calcite-tooltip theme="dark" reference-element="tooltip-button-five">This is the message of the tooltip.
+        </calcite-tooltip>
+
+        <calcite-tooltip theme="dark" placement="auto" id="tooltip-six" reference-element="tooltip-button-six">Lorem
+          Ipsum is simply of the printing and typesetting industry. Lorem Ipsum has been the industry's standard printer
+          of type and scrambled it to make a type specimen book.</calcite-tooltip>
+
+        <calcite-tooltip theme="dark" placement="auto" reference-element="tooltip-button-eight">Lorem Ipsum is simply of
+          the printing and typesetting industry. Lorem Ipsum has been the industry's standard printer of type and
+          scrambled it to make a type specimen book.
+        </calcite-tooltip>
+
+        <p>
+          Lorem <a id="tooltip-button" href="#">ipsum</a> dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation <strong
+            id="tooltip-button-two" tabindex="0">ullamco</strong> laboris nisi ut aliquip ex ea commodo consequat. Duis
+          aute irure
+          dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat non proident, sunt in culpa qui <calcite-button id="tooltip-button-four">officia deserunt
+          </calcite-button> mollit anim id est laborum.
+        </p>
+
+        <p class="demo-background-dark">
+          Lorem <a id="tooltip-button-five" href="#">ipsum</a> dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          <strong id="tooltip-button-six" tabindex="0">ullamco</strong> laboris nisi ut aliquip ex ea commodo consequat.
+          Duis aute
+          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+          occaecat cupidatat non proident, sunt in culpa qui <calcite-button id="tooltip-button-eight">officia deserunt
+          </calcite-button> mollit anim id est laborum.
+        </p>
+
+        <script>
+          var tooltip = document.getElementById("tooltip");
+          var tooltipButton = document.getElementById("tooltip-button");
+          tooltip.referenceElement = tooltipButton;
+        </script>
+      </calcite-tab>
+
+      <calcite-tab>
+        <h3>Normal Lockup</h3>
         <calcite-button color="light" appearance='outline' icon="M15.707 20h-1.414l-7.5-7.5 7.5-7.5h1.414l-7.5 7.5z">
           Back</calcite-button>
         <calcite-button appearance='outline'>Cancel</calcite-button>
+        <calcite-button>Submit</calcite-button>
 
-        <h3>Type prop passed to child (submit)</h3>
-        <calcite-button type="submit">Submit</calcite-button>
-        <calcite-button type="button">button</calcite-button>
-        <calcite-button type="reset">reset</calcite-button>
 
+        <h5>calcite button inside form with no custom onsubmit</h5>
+        <form name="form1" id="form1">
+          <label>form 1</label>
+          <input type="text" name="name1" required />
+          <calcite-button id="submit-button1">Go</calcite-button>
+          <calcite-button type="button">I should not submit the form (type button)</calcite-button>
+          <calcite-button type="reset">I should reset the form (type reset)</calcite-button>
+        </form>
+        <h5>with a custom defined onsubmit on form</h5>
+        <form name="form4" id="form4" onsubmit="alert('submitted')">
+          <label>form 4</label>
+          <input type="text" name="name4" required />
+          <calcite-button id="submit-button4">Go (custom onsubmit - alert)</calcite-button>
+          <calcite-button onclick="alert('clicked')" type="button">I should not submit the form (type button) but I
+            should perform my onclick</calcite-button>
+          <calcite-button type="reset">I should reset the form (type reset)</calcite-button>
+        </form>
+        <h5>multiple calcite buttons outside form</h5>
+        <form name="form2" id="form2">
+          <label>form 2 (no custom onsubmit)</label>
+          <input type="text" name="name2" required />
+        </form>
+        <form name="form3" id="form3" onsubmit="alert('submitted')">
+          <label>form 3 (has custom onsubmit)</label>
+          <input type="text" name="name3" required />
+        </form>
+        <calcite-button form="form2" id="submit-button2">Submit form 2</calcite-button>
+        <calcite-button form="form2" type="button" id="button-button2">no action (form 2)</calcite-button>
+        <calcite-button form="form2" type="reset" id="reset-button2">reset form 2</calcite-button>
+        <br />
+        <calcite-button form="form3" id="submit-button3">Submit form 3 (custom fn)</calcite-button>
+        <calcite-button form="form3" type="button" id="button-button3">no action (form 3)</calcite-button>
+        <calcite-button form="form3" type="reset" id="reset-button3">reset form 3</calcite-button>
+
+        <br />
+        <br />
         <h3>Type: Solid (default)</h3>
         <calcite-button title="blue solid button">blue solid button</calcite-button>
         <calcite-button title="red solid button" color='red'>red solid button</calcite-button>
@@ -864,8 +1181,8 @@
           <calcite-button theme="dark" title="blue solid button">blue solid button</calcite-button>
           <calcite-button theme="dark" title="red solid button" color='red'>red solid button</calcite-button>
 
-          <calcite-button title="light solid button" color='light'>light solid button</calcite-button>
-          <calcite-button title="dark solid button" color='dark'>dark solid button</calcite-button>
+          <calcite-button theme="dark" title="light solid button" color='light'>light solid button</calcite-button>
+          <calcite-button theme="dark" title="dark solid button" color='dark'>dark solid button</calcite-button>
         </div>
 
 
@@ -936,7 +1253,7 @@
         <calcite-button title="blue transparent button" appearance='transparent'
           icon='M4 5l1.067 16.86A1.29 1.29 0 0 0 6.348 23h10.304a1.29 1.29 0 0 0 1.281-1.14L19 5zm4 15.5a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 1 0zm4 0a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 1 0zm4 0a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 1 0zM19 2l1 2H3l1-2h4l1-1h5l1 1z'>
           transparent and icon</calcite-button>
-        <calcite-button title="blue transparent button" iconposition="end" appearance='transparent'
+        <calcite-button title="blue transparent button" icon-position="end" appearance='transparent'
           icon='M4 5l1.067 16.86A1.29 1.29 0 0 0 6.348 23h10.304a1.29 1.29 0 0 0 1.281-1.14L19 5zm4 15.5a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 1 0zm4 0a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 1 0zm4 0a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 1 0zM19 2l1 2H3l1-2h4l1-1h5l1 1z'>
           transparent and end icon</calcite-button>
         <calcite-button title="blue transparent button" appearance='transparent'>blue transparent button
@@ -965,6 +1282,10 @@
         </div>
 
         <h3>Type: Inline (render as anchor)</h3>
+        An anchor <calcite-button title="in the middle" appearance="inline"> with no href in the middle</calcite-button>
+        of
+        some
+        text.<br />
         An anchor <calcite-button title="in the middle" href="/" appearance="inline">in the middle</calcite-button> of
         some
         text.<br />
@@ -991,7 +1312,7 @@
           An anchor link <calcite-button href="http://google.com" appearance="inline" color='light'
             rel="noopener noreferrer" target="_blank" title="in the middle with an icon"
             icon='M20 11h2v11H2V2h11v2H4v16h16zm-5-9v1.5h4.44l-7.93 7.93 1.062 1.06L20.5 4.56V9H22V2z'
-            iconposition="end"> to Google with an
+            icon-position="end"> to Google with an
             icon</calcite-button> in some text.<br />
           An anchor link <calcite-button href="http://google.com" appearance="inline" color='light'
             rel="noopener noreferrer" target="_blank" title="in the middle with an icon"
@@ -1067,6 +1388,8 @@
         <calcite-button color="red" appearance="outline" onclick="loadingButton(this, 5000)">Do something
         </calcite-button>
 
+
+
         <h3>Icons, and icons in combination with loader</h3>
         <h5>pass path data - recommend using Calcite UI Icon Filled variants @ 24.</h5>
         <calcite-button appearance="outline" color="light"
@@ -1075,7 +1398,7 @@
         <calcite-button onclick="loadingButton(this, 3000)"
           icon='M24 11.226A4.695 4.695 0 0 1 19.596 16H14v-2h5.595a2.708 2.708 0 0 0 2.406-2.774A3.175 3.175 0 0 0 19.797 8.2l-1.19-.387-.173-1.24A5.16 5.16 0 0 0 13.482 2a4.992 4.992 0 0 0-4.37 2.732L8.365 6.14l-1.538-.41a1.986 1.986 0 0 0-.504-.082 1.474 1.474 0 0 0-1.533 1.39l-.083 1.127-1.008.51a3.03 3.03 0 0 0-1.698 2.695A2.623 2.623 0 0 0 4.406 14H10v2H4.406a4.606 4.606 0 0 1-4.405-4.63 5.04 5.04 0 0 1 2.794-4.479 3.47 3.47 0 0 1 3.529-3.244 3.952 3.952 0 0 1 1.02.15A6.971 6.971 0 0 1 13.482 0a7.131 7.131 0 0 1 6.933 6.297 5.186 5.186 0 0 1 3.586 4.929zm-8 6.315l-3 2.93V12h-2v8.47l-3-2.93v2.153l4 4 4-4z'>
         </calcite-button>
-        <calcite-button appearance="outline" color="dark" iconposition="end"
+        <calcite-button appearance="outline" color="dark" icon-position="end"
           icon='M24 11.226A4.695 4.695 0 0 1 19.596 16H14v-2h5.595a2.708 2.708 0 0 0 2.406-2.774A3.175 3.175 0 0 0 19.797 8.2l-1.19-.387-.173-1.24A5.16 5.16 0 0 0 13.482 2a4.992 4.992 0 0 0-4.37 2.732L8.365 6.14l-1.538-.41a1.986 1.986 0 0 0-.504-.082 1.474 1.474 0 0 0-1.533 1.39l-.083 1.127-1.008.51a3.03 3.03 0 0 0-1.698 2.695A2.623 2.623 0 0 0 4.406 14H10v2H4.406a4.606 4.606 0 0 1-4.405-4.63 5.04 5.04 0 0 1 2.794-4.479 3.47 3.47 0 0 1 3.529-3.244 3.952 3.952 0 0 1 1.02.15A6.971 6.971 0 0 1 13.482 0a7.131 7.131 0 0 1 6.933 6.297 5.186 5.186 0 0 1 3.586 4.929zm-8 6.315l-3 2.93V12h-2v8.47l-3-2.93v2.153l4 4 4-4z'>
           Download icon end</calcite-button>
         <calcite-button scale="l" appearance="outline"
@@ -1090,7 +1413,7 @@
         <calcite-button color='red' appearance="outline" onclick="loadingButton(this, 3000)"
           icon='M4 5l1.067 16.86A1.29 1.29 0 0 0 6.348 23h10.304a1.29 1.29 0 0 0 1.281-1.14L19 5zm4 15.5a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 1 0zm4 0a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 1 0zm4 0a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 1 0zM19 2l1 2H3l1-2h4l1-1h5l1 1z'>
           Delete this (loader)</calcite-button>
-        <calcite-button color='red' scale="l" appearance="outline" iconposition="end"
+        <calcite-button color='red' scale="l" appearance="outline" icon-position="end"
           onclick="loadingButton(this, 3000)"
           icon='M4 5l1.067 16.86A1.29 1.29 0 0 0 6.348 23h10.304a1.29 1.29 0 0 0 1.281-1.14L19 5zm4 15.5a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 1 0zm4 0a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 1 0zm4 0a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 1 0zM19 2l1 2H3l1-2h4l1-1h5l1 1z'>
           Delete this (loader)</calcite-button>
@@ -1125,28 +1448,28 @@
 
         <calcite-dropdown>
           <calcite-button slot="dropdown-trigger">Dropdown with Two Groups</calcite-button>
-          <calcite-dropdown-group grouptitle="Sort by">
+          <calcite-dropdown-group group-title="Sort by">
             <calcite-dropdown-item>Relevance</calcite-dropdown-item>
             <calcite-dropdown-item active>Date modified</calcite-dropdown-item>
             <calcite-dropdown-item>Title</calcite-dropdown-item>
           </calcite-dropdown-group>
-          <calcite-dropdown-group grouptitle="Sort Direction">
+          <calcite-dropdown-group group-title="Sort Direction">
             <calcite-dropdown-item>Least recent</calcite-dropdown-item>
             <calcite-dropdown-item active>Most recent</calcite-dropdown-item>
           </calcite-dropdown-group>
         </calcite-dropdown>
         <calcite-dropdown>
           <calcite-button slot="dropdown-trigger">Dropdown with Three Groups</calcite-button>
-          <calcite-dropdown-group grouptitle="Sort by">
+          <calcite-dropdown-group group-title="Sort by">
             <calcite-dropdown-item>Relevance</calcite-dropdown-item>
             <calcite-dropdown-item active>Date modified</calcite-dropdown-item>
             <calcite-dropdown-item>Title</calcite-dropdown-item>
           </calcite-dropdown-group>
-          <calcite-dropdown-group grouptitle="Sort Direction">
+          <calcite-dropdown-group group-title="Sort Direction">
             <calcite-dropdown-item active>Least recent</calcite-dropdown-item>
             <calcite-dropdown-item>Most recent</calcite-dropdown-item>
           </calcite-dropdown-group>
-          <calcite-dropdown-group grouptitle="Price">
+          <calcite-dropdown-group group-title="Price">
             <calcite-dropdown-item>Less</calcite-dropdown-item>
             <calcite-dropdown-item active>More</calcite-dropdown-item>
           </calcite-dropdown-group>
@@ -1155,7 +1478,7 @@
         <calcite-dropdown alignment="right">
           <calcite-button slot="dropdown-trigger">Open Dropdown right aligned</calcite-button>
 
-          <calcite-dropdown-group grouptitle="View">
+          <calcite-dropdown-group group-title="View">
             <calcite-dropdown-item active>List</calcite-dropdown-item>
             <calcite-dropdown-item>Grid</calcite-dropdown-item>
             <calcite-dropdown-item>Table</calcite-dropdown-item>
@@ -1176,6 +1499,33 @@
         </calcite-dropdown>
         <br />
         <br />
+        <h3> Dropdowns with items as links</h3>
+        <calcite-dropdown>
+          <calcite-button slot="dropdown-trigger">Dropdowns with items as links</calcite-button>
+          <calcite-dropdown-group>
+            <calcite-dropdown-item href="/mypage" link-title="My Page">Relevance</calcite-dropdown-item>
+            <calcite-dropdown-item href="/mypage2" link-title="My Page 2" active>Date modified</calcite-dropdown-item>
+            <calcite-dropdown-item href="/mypage3" link-title="My Page 3">Title</calcite-dropdown-item>
+          </calcite-dropdown-group>
+        </calcite-dropdown>
+        <br />
+        <br />
+        <h3> Dropdowns with items as links mixed with not links</h3>
+        <calcite-dropdown>
+          <calcite-button slot="dropdown-trigger">Dropdowns with items as links</calcite-button>
+          <calcite-dropdown-group group-title="Not Links">
+            <calcite-dropdown-item>Relevance</calcite-dropdown-item>
+            <calcite-dropdown-item active>Date modified</calcite-dropdown-item>
+            <calcite-dropdown-item>Title</calcite-dropdown-item>
+          </calcite-dropdown-group>
+          <calcite-dropdown-group group-title="Link">
+            <calcite-dropdown-item href="/mypage" link-title="My Page">Relevance</calcite-dropdown-item>
+            <calcite-dropdown-item href="/mypage2" link-title="My Page 3" active>Date modified</calcite-dropdown-item>
+            <calcite-dropdown-item href="/mypage3" link-title="My Page 3">Title</calcite-dropdown-item>
+          </calcite-dropdown-group>
+        </calcite-dropdown>
+        <br />
+        <br />
         <calcite-dropdown theme="dark">
           <calcite-button color="dark" slot="dropdown-trigger">Open Dropdown dark mode</calcite-button>
           <calcite-dropdown-group>
@@ -1189,14 +1539,14 @@
 
         <calcite-dropdown theme="dark">
           <calcite-button color="dark" slot="dropdown-trigger">Open Dropdown dark mode with groups</calcite-button>
-          <calcite-dropdown-group grouptitle="Flavors">
+          <calcite-dropdown-group group-title="Flavors">
             <calcite-dropdown-item>Mint</calcite-dropdown-item>
             <calcite-dropdown-item active>Chocolate</calcite-dropdown-item>
             <calcite-dropdown-item>Banana</calcite-dropdown-item>
             <calcite-dropdown-item>Vanilla</calcite-dropdown-item>
             <calcite-dropdown-item>Strawberry</calcite-dropdown-item>
           </calcite-dropdown-group>
-          <calcite-dropdown-group grouptitle="Genres">
+          <calcite-dropdown-group group-title="Genres">
             <calcite-dropdown-item>Rock</calcite-dropdown-item>
             <calcite-dropdown-item active>Country</calcite-dropdown-item>
             <calcite-dropdown-item>Western</calcite-dropdown-item>
@@ -1207,7 +1557,7 @@
         <br />
         <calcite-dropdown scale="s">
           <calcite-button scale="s" slot="dropdown-trigger">Scale S small</calcite-button>
-          <calcite-dropdown-group grouptitle="View">
+          <calcite-dropdown-group group-title="View">
             <calcite-dropdown-item active>List</calcite-dropdown-item>
             <calcite-dropdown-item>Grid</calcite-dropdown-item>
             <calcite-dropdown-item>Table</calcite-dropdown-item>
@@ -1216,7 +1566,7 @@
 
         <calcite-dropdown scale="m">
           <calcite-button scale="m" slot="dropdown-trigger">Scale M medium</calcite-button>
-          <calcite-dropdown-group grouptitle="View">
+          <calcite-dropdown-group group-title="View">
             <calcite-dropdown-item active>List</calcite-dropdown-item>
             <calcite-dropdown-item>Grid</calcite-dropdown-item>
             <calcite-dropdown-item>Table</calcite-dropdown-item>
@@ -1225,7 +1575,7 @@
 
         <calcite-dropdown scale="l">
           <calcite-button color="dark" scale="l" slot="dropdown-trigger">Scale L large</calcite-button>
-          <calcite-dropdown-group grouptitle="View">
+          <calcite-dropdown-group group-title="View">
             <calcite-dropdown-item active>List</calcite-dropdown-item>
             <calcite-dropdown-item>Grid</calcite-dropdown-item>
             <calcite-dropdown-item>Table</calcite-dropdown-item>
@@ -1235,7 +1585,7 @@
         <calcite-dropdown>
           <button slot="dropdown-trigger" tabIndex="0">I'm not a "not calcite-button" button trigger</button>
 
-          <calcite-dropdown-group grouptitle="View">
+          <calcite-dropdown-group group-title="View">
             <calcite-dropdown-item active>List</calcite-dropdown-item>
             <calcite-dropdown-item>Grid</calcite-dropdown-item>
             <calcite-dropdown-item>Table</calcite-dropdown-item>
@@ -1245,7 +1595,7 @@
 
         <calcite-dropdown>
           <a slot="dropdown-trigger" tabIndex="0">I'm not an anchor trigger</a>
-          <calcite-dropdown-group grouptitle="View">
+          <calcite-dropdown-group group-title="View">
             <calcite-dropdown-item active>List</calcite-dropdown-item>
             <calcite-dropdown-item>Grid</calcite-dropdown-item>
             <calcite-dropdown-item>Table</calcite-dropdown-item>
@@ -1253,7 +1603,6 @@
         </calcite-dropdown>
       </calcite-tab>
       <calcite-tab>
-
         <h3>Nav Tree</h3>
         <calcite-tree lines>
           <calcite-tree-item>
@@ -1455,6 +1804,294 @@
           </calcite-tree>
         </div>
 
+        <h3>Strange Nesting</h3>
+        <p>In this example a nested item has no link but others have links. The parent link should NOT be clicked when
+          the child text is clicked.</p>
+        <calcite-tree>
+          <calcite-tree-item>
+            <a href="#calcite-tree-strange-nesting-1" id="calcite-tree-strange-nesting-1">Parent with Link</a>
+            <calcite-tree slot="children">
+              <calcite-tree-item>
+                Parent Without Link
+                <calcite-tree slot="children">
+                  <calcite-tree-item>
+                    <a href="#calcite-tree-strange-nesting-2" id="calcite-tree-strange-nesting-2">Child Link</a>
+                  </calcite-tree-item>
+                </calcite-tree>
+              </calcite-tree-item>
+            </calcite-tree>
+          </calcite-tree-item>
+        </calcite-tree>
+
+
+        <h3>Big Tree</h3>
+        <p>Parent Items in this tree also have links. Click the chevron icon to toggle expand/collapse or anywhere else
+          to click the link.</p>
+        <calcite-tree lines>
+          <calcite-tree-item>
+            <a href="/guide/developing-extensions-with-arcgis-enterprise-sdk/">Developing Extensions with ArcGIS
+              Enterprise SDK</a>
+            <calcite-tree slot="children" id="test">
+              <calcite-tree-item>
+                <a href="/guide/developing-with-net/">Developing with .NET</a>
+                <calcite-tree slot="children">
+                  <calcite-tree-item>
+                    <a href="/guide/migrating-extensions-1/">Migrating Extensions</a>
+                    <calcite-tree slot="children">
+                      <calcite-tree-item><a href="/guide/how-to-migrate-a-net-soe-to-arcgis-enterprise-sdk/">How to
+                          migrate a .NET SOE to ArcGIS Enterprise SDK</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/migration-strategies/">Migration Strategies</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/migration-steps-1/">Migration Steps</a></calcite-tree-item>
+                    </calcite-tree>
+                  </calcite-tree-item>
+                  <calcite-tree-item>
+                    <a href="/guide/net-samples/">.NET Samples</a>
+                    <calcite-tree slot="children">
+                      <calcite-tree-item><a href="/guide/simple-logger-soi/">Simple Logger SOI</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/operation-access-soi/">Operation Access SOI</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/apply-watermark-soi/">Apply Watermark SOI</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/before-using-samples/">Before using Samples</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/spatial-query-rest-soe/">Spatial Query REST SOE</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/find-near-features-rest-soe/">Find near Features REST SOE</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/layer-access-soi/">Layer Access SOI</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/simple-rest-soe-with-capabilities-1/">Simple REST SOE with
+                          Capabilities</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/edit-features-rest-soe/">Edit Features REST SOE</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/simple-rest-soe-with-properties-1/">Simple REST SOE with
+                          Properties</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/find-near-features-soap-soe/">Find near Features SOAP SOE</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/simple-rest-soe/">Simple REST SOE</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/simple-soap-soe-1/">Simple SOAP SOE</a></calcite-tree-item>
+                    </calcite-tree>
+                  </calcite-tree-item>
+                  <calcite-tree-item>
+                    <a href="/guide/developing-server-object-extensions/">Developing Server Object Extensions</a>
+                    <calcite-tree slot="children">
+                      <calcite-tree-item>
+                        <a href="/guide/developing-rest-server-object-extensions/">Developing REST Server Object
+                          Extensions</a>
+                        <calcite-tree slot="children">
+                          <calcite-tree-item>
+                            <a
+                              href="/guide/walkthrough-for-creating-a-rest-server-object-extension-arcobjects-net-10-sdk/">Walkthrough
+                              for Creating a REST Server Object Extension (ArcObjects .NET 10 SDK)</a>
+                            <calcite-tree slot="children">
+                              <calcite-tree-item><a href="/guide/how-to-deploy-the-rest-soe/">How to Deploy the REST
+                                  SOE</a></calcite-tree-item>
+                              <calcite-tree-item><a href="/guide/how-to-enable-and-test-the-rest-soe-on-a-service/">How
+                                  to Enable and Test the REST SOE on a Service</a></calcite-tree-item>
+                              <calcite-tree-item><a href="/guide/how-to-develop-a-property-page-for-the-rest-soe/">How
+                                  to Develop a Property Page for the REST SOE</a></calcite-tree-item>
+                              <calcite-tree-item><a href="/guide/how-to-use-the-rest-soe-in-a-web-application/">How to
+                                  Use the REST SOE in a Web Application</a></calcite-tree-item>
+                              <calcite-tree-item><a href="/guide/how-to-develop-the-rest-soe/">How to Develop the REST
+                                  SOE</a></calcite-tree-item>
+                            </calcite-tree>
+                          </calcite-tree-item>
+                          <calcite-tree-item><a
+                              href="/guide/building-the-schema-of-a-rest-server-object-extension/">Building the Schema
+                              of a REST Server Object Extension</a></calcite-tree-item>
+                          <calcite-tree-item><a
+                              href="/guide/handling-requests-to-a-rest-server-object-extension/">Handling Requests to a
+                              REST Server Object Extension</a></calcite-tree-item>
+                          <calcite-tree-item><a
+                              href="/guide/working-with-json-in-a-rest-server-object-extension/">Working with JSON in a
+                              REST server object extension</a></calcite-tree-item>
+                          <calcite-tree-item><a
+                              href="/guide/walkthrough-for-creating-a-rest-server-object-extension-arcobjects-net-10-sdk/">Walkthrough
+                              for Creating a REST Server Object Extension (ArcObjects .NET 10 SDK)</a>
+                          </calcite-tree-item>
+                          <calcite-tree-item><a
+                              href="/guide/using-a-rest-server-object-extension-in-a-client-application/">Using a REST
+                              Server Object Extension in a Client Application</a></calcite-tree-item>
+                          <calcite-tree-item><a
+                              href="/guide/quick-tour-of-the-rest-server-object-extension-template/">Quick Tour of the
+                              REST Server Object Extension Template</a></calcite-tree-item>
+                          <calcite-tree-item><a
+                              href="/guide/how-to-open-the-rest-server-object-extension-template-in-visual-studio/">How
+                              to Open the REST Server Object Extension Template in Visual Studio</a></calcite-tree-item>
+                          <calcite-tree-item><a
+                              href="/guide/strategies-for-building-rest-server-object-extensions/">Strategies for
+                              Building REST Server Object Extensions</a></calcite-tree-item>
+                          <calcite-tree-item><a href="/guide/what-is-a-rest-server-object-extension/">What is a REST
+                              Server Object Extension?</a></calcite-tree-item>
+                        </calcite-tree>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/overview-of-developing-a-server-object-extension/">Overview of
+                          Developing a Server Object Extension</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/developing-soap-server-object-extensions/">Developing SOAP
+                          Server Object Extensions</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/developing-rest-server-object-extensions/">Developing REST
+                          Server Object Extensions</a></calcite-tree-item>
+                    </calcite-tree>
+                  </calcite-tree-item>
+                  <calcite-tree-item>
+                    <a href="/guide/developing-server-object-interceptors-1/">Developing Server Object Interceptors</a>
+                    <calcite-tree slot="children">
+                      <calcite-tree-item><a href="/guide/quick-tour-of-a-simple-soi-1/">Quick tour of a simple SOI</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/how-to-audit-requests-in-sois/">How to audit requests in
+                          SOIs</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/soi-properties/">SOI properties</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/overview-of-developing-server-object-interceptors/">Overview of
+                          developing server object interceptors</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/how-to-handle-rest-requests-and-responses-in-sois-1/">How to
+                          handle REST requests and responses in SOIs</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/what-is-a-server-object-interceptor/">What is a server object
+                          interceptor?</a></calcite-tree-item>
+                    </calcite-tree>
+                  </calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/developing-server-object-extensions/">Developing Server Object
+                      Extensions</a></calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/visual-studio-integration/">Visual Studio Integration</a>
+                  </calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/migrating-extensions-1/">Migrating Extensions</a>
+                  </calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/debugging-net-extensions/">Debugging .NET extensions</a>
+                  </calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/net-samples/">.NET Samples</a></calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/developing-server-object-interceptors-1/">Developing Server Object
+                      Interceptors</a></calcite-tree-item>
+                </calcite-tree>
+              </calcite-tree-item>
+              <calcite-tree-item>
+                <a href="/guide/developing-with-java/">Developing with Java</a>
+                <calcite-tree slot="children">
+                  <calcite-tree-item>
+                    <a href="/guide/developing-server-object-interceptors/">Developing Server Object Interceptors</a>
+                    <calcite-tree slot="children">
+                      <calcite-tree-item><a href="/guide/quick-tour-of-a-simple-soi/">Quick tour of a simple SOI</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/how-to-audit-requests-in-sois-1/">How to audit requests in
+                          SOIs</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/soi-properties-1/">SOI properties</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/how-to-handle-rest-requests-and-responses-in-sois/">How to
+                          handle REST requests and responses in SOIs</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/overview-of-developing-server-object-interceptors-1/">Overview
+                          of developing server object interceptors</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/what-is-a-server-object-interceptor-1/">What is a server object
+                          interceptor?</a></calcite-tree-item>
+                    </calcite-tree>
+                  </calcite-tree-item>
+                  <calcite-tree-item>
+                    <a href="/guide/exporting-extensions/">Exporting Extensions</a>
+                    <calcite-tree slot="children">
+                      <calcite-tree-item><a href="/guide/exporting-soes-and-sois-with-dependencies/">Exporting SOEs and
+                          SOIs with Dependencies</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/exporting-soes-and-sois/">Exporting SOEs and SOIs</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/exporting-soes-and-sois-using-command-line/">Exporting SOEs and
+                          SOIs using Command Line</a></calcite-tree-item>
+                    </calcite-tree>
+                  </calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/exporting-extensions/">Exporting Extensions</a></calcite-tree-item>
+                  <calcite-tree-item>
+                    <a href="/guide/using-arcgis-eclipse-plugin/">Using ArcGIS Eclipse plugin</a>
+                    <calcite-tree slot="children">
+                      <calcite-tree-item><a href="/guide/uninstalling-arcgis-eclipse-plugin/">Uninstalling ArcGIS
+                          Eclipse Plugin</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/installing-arcgis-eclipse-plugin/">Installing ArcGIS Eclipse
+                          Plugin</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/adding-the-arcgis-enterprise-sdk-library/">Adding the ArcGIS
+                          Enterprise SDK Library</a></calcite-tree-item>
+                    </calcite-tree>
+                  </calcite-tree-item>
+                  <calcite-tree-item>
+                    <a href="/guide/developing-server-object-extensions-1/">Developing Server Object Extensions</a>
+                    <calcite-tree slot="children">
+                      <calcite-tree-item>
+                        <a href="/guide/server-object-extension-properties/">Server Object Extension Properties</a>
+                        <calcite-tree slot="children">
+                          <calcite-tree-item><a href="/guide/adding-properties-to-java-soes/">Adding Properties to Java
+                              SOEs</a></calcite-tree-item>
+                          <calcite-tree-item><a
+                              href="/guide/creating-custom-property-pages-for-arcgis-server-manager/">Creating Custom
+                              Property Pages for ArcGIS Server Manager</a></calcite-tree-item>
+                        </calcite-tree>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/adding-capabilities-to-server-object-extension/">Adding
+                          Capabilities to Server Object Extension</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/overview-of-developing-server-object-extension/">Overview of
+                          Developing Server Object Extension</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/developing-rest-server-object-extension/">Developing REST
+                          Server Object Extension</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/developing-soap-server-object-extension/">Developing SOAP
+                          Server Object Extension</a></calcite-tree-item>
+                    </calcite-tree>
+                  </calcite-tree-item>
+                  <calcite-tree-item>
+                    <a href="/guide/java-samples/">Java Samples</a>
+                    <calcite-tree slot="children">
+                      <calcite-tree-item><a href="/guide/simple-soap-soe/">Simple SOAP SOE</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/server-operation-access-soi/">Server Operation Access SOI</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/apply-watermark-soi-1/">Apply Watermark SOI</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/simple-rest-soe-with-properties/">Simple REST SOE With
+                          Properties</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/simple-rest-soe-with-capabilities/">Simple REST SOE With
+                          Capabilities</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/find-nearby-features-rest-soe/">Find Nearby Features REST
+                          SOE</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/find-nearby-features-soap-soe/">Find Nearby Features SOAP
+                          SOE</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/simple-logger-soi-1/">Simple Logger SOI</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/layer-access-soi-1/">Layer Access SOI</a></calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/simple-rest-soe-1/">Simple REST SOE</a></calcite-tree-item>
+                    </calcite-tree>
+                  </calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/debugging-extensions/">Debugging extensions</a></calcite-tree-item>
+                  <calcite-tree-item>
+                    <a href="/guide/migrating-extensions/">Migrating Extensions</a>
+                    <calcite-tree slot="children">
+                      <calcite-tree-item><a href="/guide/migration-strategies-1/">Migration Strategies</a>
+                      </calcite-tree-item>
+                      <calcite-tree-item><a href="/guide/migration-steps/">Migration Steps</a></calcite-tree-item>
+                    </calcite-tree>
+                  </calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/java-samples/">Java Samples</a></calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/logging-messages/">Logging Messages</a></calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/developing-server-object-interceptors/">Developing Server Object
+                      Interceptors</a></calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/using-arcgis-eclipse-plugin/">Using ArcGIS Eclipse plugin</a>
+                  </calcite-tree-item>
+                  <calcite-tree-item><a href="/guide/developing-server-object-extensions-1/">Developing Server Object
+                      Extensions</a></calcite-tree-item>
+                </calcite-tree>
+              </calcite-tree-item>
+              <calcite-tree-item><a href="/guide/deploying-extensions/">Deploying extensions</a></calcite-tree-item>
+              <calcite-tree-item><a href="/guide/developing-with-java/">Developing with Java</a></calcite-tree-item>
+              <calcite-tree-item><a href="/guide/developing-with-net/">Developing with .NET</a></calcite-tree-item>
+              <calcite-tree-item><a href="/guide/enabling-extensions/">Enabling extensions</a></calcite-tree-item>
+              <calcite-tree-item><a href="/guide/about-extensions/">About Extensions</a></calcite-tree-item>
+            </calcite-tree>
+          </calcite-tree-item>
+          <calcite-tree-item>
+            <a href="/guide/installation/">Installation</a>
+            <calcite-tree slot="children">
+              <calcite-tree-item><a href="/guide/post-installation-steps-for-java/">Post-Installation Steps for Java</a>
+              </calcite-tree-item>
+              <calcite-tree-item><a href="/guide/installing-arcgis-enterprise-sdk/">Installing ArcGIS Enterprise SDK</a>
+              </calcite-tree-item>
+            </calcite-tree>
+          </calcite-tree-item>
+          <calcite-tree-item><a href="/guide/frequently-asked-questions/">Frequently Asked Questions</a>
+          </calcite-tree-item>
+          <calcite-tree-item><a href="/guide/what-is-arcgis-enterprise-sdk/">What is ArcGIS Enterprise SDK</a>
+          </calcite-tree-item>
+          <calcite-tree-item><a href="/guide/design-philosophy-for-arcgis-enterprise-sdk/">Design Philosophy for ArcGIS
+              Enterprise SDK</a></calcite-tree-item>
+          <calcite-tree-item><a href="/guide/system-requirements/">System Requirements</a></calcite-tree-item>
+        </calcite-tree>
+
         <h3>Active and Expanded States</h3>
 
         <calcite-tree lines>
@@ -1518,9 +2155,9 @@
         </calcite-tree>
 
 
-        <h3>Single Select Mode</h3>
+        <h3>Multi Select Mode</h3>
 
-        <calcite-tree lines selection-mode="single">
+        <calcite-tree lines selection-mode="multi">
           <calcite-tree-item>
             Child 1
           </calcite-tree-item>
@@ -1588,9 +2225,9 @@
         </calcite-tree>
 
 
-        <h3>Multi Select Mode</h3>
+        <h3>Single Select Mode</h3>
 
-        <calcite-tree lines selection-mode="multi">
+        <calcite-tree lines selection-mode="single">
           <calcite-tree-item>
             Child 1
           </calcite-tree-item>
@@ -1791,6 +2428,540 @@
           </calcite-tree-item>
         </calcite-tree>
 
+      </calcite-tab>
+      <calcite-tab>
+        <h3>Accordions</h3>
+        <div style=display:flex;width:100%>
+          <div style="display:inline-flex;flex-direction:column;width:33%;padding:10px">
+            <h4>Default</h4>
+            <calcite-accordion>
+              <calcite-accordion-item item-title="Accordion Item"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 2" active><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 3 with a potentially two line title"><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 4"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 5">
+                <calcite-tree lines>
+                  <calcite-tree-item>
+                    Child 1
+                  </calcite-tree-item>
+
+                  <calcite-tree-item>
+                    Child 2
+
+                    <calcite-tree slot="children">
+                      <calcite-tree-item>
+                        Grandchild 1
+                      </calcite-tree-item>
+
+                      <calcite-tree-item>
+                        Grandchild 2
+                        <calcite-tree slot="children">
+                          <calcite-tree-item>
+                            Great-Grandchild 1
+                          </calcite-tree-item>
+                          <calcite-tree-item>
+                            Great-Grandchild 2
+                          </calcite-tree-item>
+                        </calcite-tree>
+                      </calcite-tree-item>
+                    </calcite-tree>
+
+                  </calcite-tree-item>
+                </calcite-tree>
+              </calcite-accordion-item>
+            </calcite-accordion>
+            <h4>Minimal</h4>
+            <calcite-accordion appearance="minimal">
+              <calcite-accordion-item item-title="Accordion Item"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 2" active><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 3 with a potentially two line title"><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 4"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 5">
+                <calcite-tree lines>
+                  <calcite-tree-item>
+                    Child 1
+                  </calcite-tree-item>
+
+                  <calcite-tree-item>
+                    Child 2
+
+                    <calcite-tree slot="children">
+                      <calcite-tree-item>
+                        Grandchild 1
+                      </calcite-tree-item>
+
+                      <calcite-tree-item>
+                        Grandchild 2
+                        <calcite-tree slot="children">
+                          <calcite-tree-item>
+                            Great-Grandchild 1
+                          </calcite-tree-item>
+                          <calcite-tree-item>
+                            Great-Grandchild 2
+                          </calcite-tree-item>
+                        </calcite-tree>
+                      </calcite-tree-item>
+                    </calcite-tree>
+
+                  </calcite-tree-item>
+                </calcite-tree>
+              </calcite-accordion-item>
+            </calcite-accordion>
+            <h4>Selection mode: "single" (only open one at a time)</h4>
+            <calcite-accordion selection-mode="single">
+              <calcite-accordion-item item-title="Accordion Item"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 2" active><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 3 with a potentially two line title"><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 4"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 5">
+                <calcite-tree lines>
+                  <calcite-tree-item>
+                    Child 1
+                  </calcite-tree-item>
+
+                  <calcite-tree-item>
+                    Child 2
+
+                    <calcite-tree slot="children">
+                      <calcite-tree-item>
+                        Grandchild 1
+                      </calcite-tree-item>
+
+                      <calcite-tree-item>
+                        Grandchild 2
+                        <calcite-tree slot="children">
+                          <calcite-tree-item>
+                            Great-Grandchild 1
+                          </calcite-tree-item>
+                          <calcite-tree-item>
+                            Great-Grandchild 2
+                          </calcite-tree-item>
+                        </calcite-tree>
+                      </calcite-tree-item>
+                    </calcite-tree>
+
+                  </calcite-tree-item>
+                </calcite-tree>
+              </calcite-accordion-item>
+            </calcite-accordion>
+            <h4>Selection mode: "single-persist" (only open one at a time - force one to remain open)</h4>
+            <calcite-accordion selection-mode="single-persist">
+              <calcite-accordion-item item-title="Accordion Item"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 2" active><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 3 with a potentially two line title"><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 4"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 5">
+                <calcite-tree lines>
+                  <calcite-tree-item>
+                    Child 1
+                  </calcite-tree-item>
+
+                  <calcite-tree-item>
+                    Child 2
+
+                    <calcite-tree slot="children">
+                      <calcite-tree-item>
+                        Grandchild 1
+                      </calcite-tree-item>
+
+                      <calcite-tree-item>
+                        Grandchild 2
+                        <calcite-tree slot="children">
+                          <calcite-tree-item>
+                            Great-Grandchild 1
+                          </calcite-tree-item>
+                          <calcite-tree-item>
+                            Great-Grandchild 2
+                          </calcite-tree-item>
+                        </calcite-tree>
+                      </calcite-tree-item>
+                    </calcite-tree>
+
+                  </calcite-tree-item>
+                </calcite-tree>
+              </calcite-accordion-item>
+            </calcite-accordion>
+
+          </div>
+          <div style="display:inline-flex;flex-direction:column;width:33%;padding:10px">
+            <h4>icon-position: start</h4>
+            <calcite-accordion icon-position="start">
+              <calcite-accordion-item item-title="Accordion Item"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 2" active><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 3 with a potentially two line title"><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 4"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 5">
+                <calcite-tree lines>
+                  <calcite-tree-item>
+                    Child 1
+                  </calcite-tree-item>
+
+                  <calcite-tree-item>
+                    Child 2
+
+                    <calcite-tree slot="children">
+                      <calcite-tree-item>
+                        Grandchild 1
+                      </calcite-tree-item>
+
+                      <calcite-tree-item>
+                        Grandchild 2
+                        <calcite-tree slot="children">
+                          <calcite-tree-item>
+                            Great-Grandchild 1
+                          </calcite-tree-item>
+                          <calcite-tree-item>
+                            Great-Grandchild 2
+                          </calcite-tree-item>
+                        </calcite-tree>
+                      </calcite-tree-item>
+                    </calcite-tree>
+
+                  </calcite-tree-item>
+                </calcite-tree>
+              </calcite-accordion-item>
+            </calcite-accordion>
+            <h4>Minimal icon-position: start</h4>
+            <calcite-accordion appearance="minimal" icon-position="start">
+              <calcite-accordion-item item-title="Accordion Item"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 2" active><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 3 with a potentially two line title"><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 4"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 5">
+                <calcite-tree lines>
+                  <calcite-tree-item>
+                    Child 1
+                  </calcite-tree-item>
+
+                  <calcite-tree-item>
+                    Child 2
+
+                    <calcite-tree slot="children">
+                      <calcite-tree-item>
+                        Grandchild 1
+                      </calcite-tree-item>
+
+                      <calcite-tree-item>
+                        Grandchild 2
+                        <calcite-tree slot="children">
+                          <calcite-tree-item>
+                            Great-Grandchild 1
+                          </calcite-tree-item>
+                          <calcite-tree-item>
+                            Great-Grandchild 2
+                          </calcite-tree-item>
+                        </calcite-tree>
+                      </calcite-tree-item>
+                    </calcite-tree>
+
+                  </calcite-tree-item>
+                </calcite-tree>
+              </calcite-accordion-item>
+            </calcite-accordion>
+            <div dir="rtl">
+              <h4>RTL</h4>
+
+              <calcite-accordion>
+                <calcite-accordion-item item-title="Accordion Item"><img src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 2" active><img
+                    src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 3 with a potentially two line title"><img
+                    src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 4"><img src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 5">
+                  <calcite-tree lines>
+                    <calcite-tree-item>
+                      Child 1
+                    </calcite-tree-item>
+
+                    <calcite-tree-item>
+                      Child 2
+
+                      <calcite-tree slot="children">
+                        <calcite-tree-item>
+                          Grandchild 1
+                        </calcite-tree-item>
+
+                        <calcite-tree-item>
+                          Grandchild 2
+                          <calcite-tree slot="children">
+                            <calcite-tree-item>
+                              Great-Grandchild 1
+                            </calcite-tree-item>
+                            <calcite-tree-item>
+                              Great-Grandchild 2
+                            </calcite-tree-item>
+                          </calcite-tree>
+                        </calcite-tree-item>
+                      </calcite-tree>
+
+                    </calcite-tree-item>
+                  </calcite-tree>
+                </calcite-accordion-item>
+              </calcite-accordion>
+              <h4>RTL - icon position start</h4>
+
+              <calcite-accordion icon-position="start">
+                <calcite-accordion-item item-title="Accordion Item"><img src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 2" active><img
+                    src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 3 with a potentially two line title"><img
+                    src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 4"><img src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 5">
+                  <calcite-tree lines>
+                    <calcite-tree-item>
+                      Child 1
+                    </calcite-tree-item>
+
+                    <calcite-tree-item>
+                      Child 2
+
+                      <calcite-tree slot="children">
+                        <calcite-tree-item>
+                          Grandchild 1
+                        </calcite-tree-item>
+
+                        <calcite-tree-item>
+                          Grandchild 2
+                          <calcite-tree slot="children">
+                            <calcite-tree-item>
+                              Great-Grandchild 1
+                            </calcite-tree-item>
+                            <calcite-tree-item>
+                              Great-Grandchild 2
+                            </calcite-tree-item>
+                          </calcite-tree>
+                        </calcite-tree-item>
+                      </calcite-tree>
+
+                    </calcite-tree-item>
+                  </calcite-tree>
+                </calcite-accordion-item>
+              </calcite-accordion>
+            </div>
+          </div>
+          <div style="display:inline-flex;flex-direction:column;width:33%;padding:10px">
+            <h4>Scale s</h4>
+            <calcite-accordion scale="s">
+              <calcite-accordion-item item-title="Accordion Item"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 2" active><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 3 with a potentially two line title"><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 4"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 5">
+                <calcite-tree lines>
+                  <calcite-tree-item>
+                    Child 1
+                  </calcite-tree-item>
+
+                  <calcite-tree-item>
+                    Child 2
+
+                    <calcite-tree slot="children">
+                      <calcite-tree-item>
+                        Grandchild 1
+                      </calcite-tree-item>
+
+                      <calcite-tree-item>
+                        Grandchild 2
+                        <calcite-tree slot="children">
+                          <calcite-tree-item>
+                            Great-Grandchild 1
+                          </calcite-tree-item>
+                          <calcite-tree-item>
+                            Great-Grandchild 2
+                          </calcite-tree-item>
+                        </calcite-tree>
+                      </calcite-tree-item>
+                    </calcite-tree>
+
+                  </calcite-tree-item>
+                </calcite-tree>
+              </calcite-accordion-item>
+            </calcite-accordion>
+            <h4>Scale l</h4>
+            <calcite-accordion scale="l">
+              <calcite-accordion-item item-title="Accordion Item"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 2" active><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 3 with a potentially two line title"><img
+                  src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 4"><img src="https://placem.at/places?w=200&txt=0" />
+              </calcite-accordion-item>
+              <calcite-accordion-item item-title="Accordion Item 5">
+                <calcite-tree lines>
+                  <calcite-tree-item>
+                    Child 1
+                  </calcite-tree-item>
+
+                  <calcite-tree-item>
+                    Child 2
+
+                    <calcite-tree slot="children">
+                      <calcite-tree-item>
+                        Grandchild 1
+                      </calcite-tree-item>
+
+                      <calcite-tree-item>
+                        Grandchild 2
+                        <calcite-tree slot="children">
+                          <calcite-tree-item>
+                            Great-Grandchild 1
+                          </calcite-tree-item>
+                          <calcite-tree-item>
+                            Great-Grandchild 2
+                          </calcite-tree-item>
+                        </calcite-tree>
+                      </calcite-tree-item>
+                    </calcite-tree>
+
+                  </calcite-tree-item>
+                </calcite-tree>
+              </calcite-accordion-item>
+            </calcite-accordion>
+            <div class="demo-background-dark">
+              <h4>Dark default</h4>
+              <calcite-accordion theme="dark">
+                <calcite-accordion-item item-title="Accordion Item"><img src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 2" active><img
+                    src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 3 with a potentially two line title"><img
+                    src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 4"><img src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 5">
+                  <calcite-tree lines>
+                    <calcite-tree-item>
+                      Child 1
+                    </calcite-tree-item>
+
+                    <calcite-tree-item>
+                      Child 2
+
+                      <calcite-tree slot="children">
+                        <calcite-tree-item>
+                          Grandchild 1
+                        </calcite-tree-item>
+
+                        <calcite-tree-item>
+                          Grandchild 2
+                          <calcite-tree slot="children">
+                            <calcite-tree-item>
+                              Great-Grandchild 1
+                            </calcite-tree-item>
+                            <calcite-tree-item>
+                              Great-Grandchild 2
+                            </calcite-tree-item>
+                          </calcite-tree>
+                        </calcite-tree-item>
+                      </calcite-tree>
+
+                    </calcite-tree-item>
+                  </calcite-tree>
+                </calcite-accordion-item>
+              </calcite-accordion>
+              <h4>Dark minimal</h4>
+              <calcite-accordion appearance="minimal" theme="dark">
+                <calcite-accordion-item item-title="Accordion Item"><img src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 2" active><img
+                    src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 3 with a potentially two line title"><img
+                    src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 4"><img src="https://placem.at/places?w=200&txt=0" />
+                </calcite-accordion-item>
+                <calcite-accordion-item item-title="Accordion Item 5">
+                  <calcite-tree lines>
+                    <calcite-tree-item>
+                      Child 1
+                    </calcite-tree-item>
+
+                    <calcite-tree-item>
+                      Child 2
+
+                      <calcite-tree slot="children">
+                        <calcite-tree-item>
+                          Grandchild 1
+                        </calcite-tree-item>
+
+                        <calcite-tree-item>
+                          Grandchild 2
+                          <calcite-tree slot="children">
+                            <calcite-tree-item>
+                              Great-Grandchild 1
+                            </calcite-tree-item>
+                            <calcite-tree-item>
+                              Great-Grandchild 2
+                            </calcite-tree-item>
+                          </calcite-tree>
+                        </calcite-tree-item>
+                      </calcite-tree>
+
+                    </calcite-tree-item>
+                  </calcite-tree>
+                </calcite-accordion-item>
+              </calcite-accordion>
+            </div>
+          </div>
+        </div>
       </calcite-tab>
     </calcite-tabs>
 

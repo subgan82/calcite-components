@@ -17,11 +17,18 @@ export const config: Config = {
     },
     {
       components: [
+        "calcite-accordion",
+        "calcite-accordion-item"
+      ]
+    },
+    {
+      components: [
         "calcite-dropdown",
         "calcite-dropdown-group",
         "calcite-dropdown-item"
       ]
     },
+    { components: ["calcite-popover"] },
     { components: ["calcite-progress"] },
     { components: ["calcite-alert", "calcite-alerts"] },
     { components: ["calcite-loader"] },

@@ -1,14 +1,12 @@
 // theme variables
 // light theme
 :host {
-  --calcite-dropdown-background-color: #{$blk-000};
   --calcite-dropdown-border-color: #{$blk-020};
 }
 
 // dark theme
 :host([theme="dark"]) {
-  --calcite-dropdown-background-color: #{$blk-200};
-  --calcite-dropdown-border-color: #{$blk-220};
+  --calcite-dropdown-border-color: #{$blk-180};
 }
 
 :host {
@@ -22,7 +20,7 @@
 }
 
 :host .calcite-dropdown-wrapper {
-  transform: translate3d(0, $baseline, 0);
+  transform: translate3d(0, -$baseline, 0);
   transition: 300ms $easing-function, opacity 300ms $easing-function,
     all 0.15s ease-in-out;
   visibility: hidden;
@@ -34,8 +32,9 @@
   overflow: auto;
   width: auto;
   width: 12.5rem;
-  background: var(--calcite-dropdown-background-color);
+  background: var(--calcite-global-ui-foreground);
   border: 1px solid var(--calcite-dropdown-border-color);
+  border-radius: 2px;
   box-shadow: 0 0 12px 0 rgba($blk-240, 0.15);
 }
 

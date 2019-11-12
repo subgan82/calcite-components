@@ -6,7 +6,8 @@ import {
   Element,
   Host,
   EventEmitter,
-  State
+  State,
+  Build
 } from "@stencil/core";
 
 @Component({
@@ -225,8 +226,10 @@ export class CalciteDatePicker {
     }
 
     this.syncThisToProxyInput();
-    this.observer = new MutationObserver(this.syncThisToProxyInput);
-    this.observer.observe(this.inputProxy, { attributes: true });
+    if (Build.isBrowser) {
+      this.observer = new MutationObserver(this.syncThisToProxyInput);
+      this.observer.observe(this.inputProxy, { attributes: true });
+    }
   }
 
   syncThisToProxyInput = () => {

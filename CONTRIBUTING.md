@@ -47,6 +47,39 @@ Calcite Components include Stencil's default testing tools which are built on [J
 
 Please refer to the [Stencil testing documentation](https://stenciljs.com/docs/testing-overview) for more information.
 
+### Documenting a component
+
+Calcite Components utlizes [Storybook](https://storybook.js.org/) for documenting components. Adding a new component is very simple:
+
+1. Create a new file inside your component directory like `calcite-X.stories.js`
+2. Write stories (see below)
+3. Run the documentation locally with `npm run storybook`
+
+The `storybook` command will build Calcite Components, and open your browser to view the storybook docs locally.
+
+#### Writing stories
+
+Each component should use a `storiesOf` with at least one story. It's a great idea to add the component's auto-generated `readme.md` as notes. If your component has props that effect visual styles, you can use the [storybook knobs addon](https://www.npmjs.com/package/@storybook/addon-knobs) to allow people to manipulate props and see live updates in the documentation. A minimal stories file might look something like this:
+
+```
+import { storiesOf } from '@storybook/html';
+import { withKnobs, boolean } from '@storybook/addon-knobs'
+import notes from './readme.md';
+
+storiesOf('My component', module)
+  .addDecorator(withKnobs)
+  .add('Simple', () => `
+    <my-component demo-prop="${boolean("demo-prop", true)}"></my-component>
+  , { notes })`
+```
+
+### Deploying documentation
+
+We deploy the docs with [storybook deployer](https://github.com/storybookjs/storybook-deployer).
+
+1. Make sure your changes have landed in `master`
+2. Use `npm run deploy` to build the components, build the docs, and deploy to gh-pages
+
 ### Release process
 
 To release a new version of Calcite Components you must:
@@ -57,7 +90,7 @@ To release a new version of Calcite Components you must:
 1. Run `npm run release:prepare`. This will:
    * Run a new build with `npm run build`.
    * Increment the version in `package.json` with `npm version`
-1. Make any changes to the `CHANGELOG.md` file. Make a new entry for the release and summarize any changes.
+1. Make any changes to the `CHANGELOG.md` file, and update the example script tag src in `readme.md`. Make a new entry for the release and summarize any changes.
 1. Run `npm run release:publish`. This will run the [`support/release.sh`](https://github.com/Esri/calcite-components/blob/master/support/release.sh) file which will:
    * Create a new commit on the master branch for the version.
    * Checkout a temporary branch for the release.

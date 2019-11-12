@@ -6,8 +6,7 @@ import {
   h,
   Host,
   Listen,
-  Prop,
-  State
+  Prop
 } from "@stencil/core";
 import {
   UP,
@@ -55,14 +54,21 @@ export class CalciteDropdownItem {
   /** @internal */
   @Prop() requestedDropdownItem: string = "";
 
+  /** pass an optional href to render an anchor around the link items */
+  @Prop() href?: string;
+
+  /** pass an optional title for rendered href */
+  @Prop() linkTitle?: string;
+
   //--------------------------------------------------------------------------
   //
   //  Events
   //
   //--------------------------------------------------------------------------
 
-  @Event() calciteDropdownItemSelected: EventEmitter;
   @Event() calciteDropdownItemKeyEvent: EventEmitter;
+  @Event() calciteDropdownItemMouseover: EventEmitter;
+  @Event() calciteDropdownItemSelected: EventEmitter;
   @Event() closeCalciteDropdown: EventEmitter;
   @Event() registerCalciteDropdownItem: EventEmitter;
 
@@ -75,7 +81,6 @@ export class CalciteDropdownItem {
   componentDidLoad() {
     this.currentDropdownGroup = this.el.parentElement.id;
     this.itemPosition = this.getItemPosition();
-
     this.registerCalciteDropdownItem.emit({
       item: this.el,
       position: this.itemPosition
@@ -90,20 +95,38 @@ export class CalciteDropdownItem {
     const dir = getElementDir(this.el);
     const theme = getElementTheme(this.el);
     const scale = getElementProp(this.el, "scale", "m");
-    const selected = this.active ? "true" : null;
-    return (
-      <Host
-        theme={theme}
-        dir={dir}
-        scale={scale}
-        id={this.dropdownItemId}
-        tabindex="0"
-        role="menuitem"
-        aria-selected={selected}
-      >
-        <slot />
-      </Host>
-    );
+    if (!this.href) {
+      return (
+        <Host
+          theme={theme}
+          dir={dir}
+          scale={scale}
+          id={this.dropdownItemId}
+          tabindex="0"
+          role="menuitem"
+          aria-selected={this.active ? "true" : "false"}
+        >
+          <slot />
+        </Host>
+      );
+    } else {
+      return (
+        <Host
+          theme={theme}
+          dir={dir}
+          scale={scale}
+          id={this.dropdownItemId}
+          tabindex="0"
+          role="menuitem"
+          aria-selected={this.active ? "true" : "false"}
+          isLink
+        >
+          <a href={this.href} title={this.linkTitle}>
+            <slot />
+          </a>
+        </Host>
+      );
+    }
   }
 
   //--------------------------------------------------------------------------
@@ -116,11 +139,16 @@ export class CalciteDropdownItem {
     this.emitRequestedItem(e);
   }
 
+  @Listen("mouseover") onMouseover(e) {
+    this.calciteDropdownItemMouseover.emit(e);
+  }
+
   @Listen("keydown") keyDownHandler(e) {
     switch (e.keyCode) {
       case SPACE:
       case ENTER:
         this.emitRequestedItem(e);
+        if (e.path && e.path[0].nodeName === "A") e.click();
         break;
       case ESCAPE:
         this.closeCalciteDropdown.emit();
@@ -133,6 +161,7 @@ export class CalciteDropdownItem {
         this.calciteDropdownItemKeyEvent.emit({ item: e });
         break;
     }
+    e.preventDefault();
   }
 
   //--------------------------------------------------------------------------
@@ -147,18 +176,17 @@ export class CalciteDropdownItem {
 
   /** position withing group */
   /** @internal */
-  @State() private itemPosition: number;
+  private itemPosition: number;
 
   /** id of containing group */
   /** @internal */
-  @State() private currentDropdownGroup: string = this.el.parentElement.id;
+  private currentDropdownGroup: string;
 
   //--------------------------------------------------------------------------
   //
   //  Private Methods
   //
   //--------------------------------------------------------------------------
-
   private determineActiveItem() {
     if (this.requestedDropdownItem === this.dropdownItemId) {
       this.active = true;
@@ -170,14 +198,16 @@ export class CalciteDropdownItem {
   private emitRequestedItem(e) {
     this.calciteDropdownItemSelected.emit({
       requestedDropdownItem: e.target.id,
-      requestedDropdownGroup: e.target.parentElement.id
+      requestedDropdownGroup: (e.target
+        .parentElement as HTMLCalciteDropdownGroupElement).id
     });
     this.closeCalciteDropdown.emit();
   }
 
   private getItemPosition() {
+    const group = this.el.parentElement as HTMLCalciteDropdownGroupElement;
     return Array.prototype.indexOf.call(
-      this.el.parentElement.querySelectorAll("calcite-dropdown-item"),
+      group.querySelectorAll("calcite-dropdown-item"),
       this.el
     );
   }

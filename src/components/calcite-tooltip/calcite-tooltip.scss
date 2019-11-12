@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  position: absolute;
+  z-index: 999;
+  top: -999999px;
+  left: -999999px;
+}
+
+.tooltip-container {
+  visibility: hidden;
+  position: relative;
+  box-shadow: $shadow-2;
+}
+
+.tooltip-container--open {
+  visibility: visible;
+}
+
+.tooltip-content-container {
+  background: var(--calcite-global-ui-foreground);
+  max-width: 300px;
+  max-height: 300px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  font-weight: 500;
+  color: var(--calcite-global-ui-text-1);
+  padding: 12px 16px;
+  @include font-size(-3);
+}
+
+@include popperPointer(".tooltip-content-container");
+@include popperMargin(".tooltip-container");

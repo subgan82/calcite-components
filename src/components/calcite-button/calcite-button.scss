@@ -1,12 +1,14 @@
 // theme variables
 // light theme
 :host {
-  --calcite-button-blue: #{$ui-blue};
-  --calcite-button-blue-hover: #{$ui-blue-hover};
-  --calcite-button-blue-pressed: #{$ui-blue-pressed};
-  --calcite-button-red: #{$ui-red};
-  --calcite-button-red-hover: #{$ui-red-hover};
-  --calcite-button-red-pressed: #{$ui-red-pressed};
+  display: inline-block;
+  width: auto;
+  --calcite-button-light: #{$blk-010};
+  --calcite-button-light-hover: #{$blk-000};
+  --calcite-button-light-pressed: #{$blk-020};
+  --calcite-button-dark: #{$blk-190};
+  --calcite-button-dark-hover: #{$blk-180};
+  --calcite-button-dark-pressed: #{$blk-200};
   --calcite-button-blue-inline-underline: #{rgba($ui-blue, 0.2)};
   --calcite-button-red-inline-underline: #{rgba($ui-red, 0.2)};
   --calcite-button-blue-solid-color: #{$blk-000};
@@ -18,12 +20,12 @@
 
 // dark theme
 :host([theme="dark"]) {
-  --calcite-button-blue: #{$ui-blue-dark};
-  --calcite-button-blue-hover: #{$ui-blue-hover-dark};
-  --calcite-button-blue-pressed: #{$ui-blue-pressed-dark};
-  --calcite-button-red: #{$ui-red-dark};
-  --calcite-button-red-hover: #{$ui-red-hover-dark};
-  --calcite-button-red-pressed: #{$ui-red-pressed-dark};
+  --calcite-button-light: #{$blk-010};
+  --calcite-button-light-hover: #{$blk-020};
+  --calcite-button-light-pressed: #{$blk-000};
+  --calcite-button-dark: #{$blk-190};
+  --calcite-button-dark-hover: #{$blk-200};
+  --calcite-button-dark-pressed: #{$blk-180};
   --calcite-button-blue-inline-underline: #{rgba($ui-blue-dark, 0.2)};
   --calcite-button-red-inline-underline: #{rgba($ui-red-dark, 0.2)};
   --calcite-button-blue-solid-color: #{$blk-230};
@@ -33,14 +35,20 @@
   --calcite-button-outline-color-pressed: #{$blk-000};
 }
 
+// inline parent
+:host([appearance="inline"]) {
+  display: inline;
+}
+
 // button base
 :host button,
-:host a {
+:host a,
+:host span {
   position: relative;
-  display: inline-block;
+  display: block;
   padding: $baseline/4 1rem;
   text-decoration: none;
-  width: auto;
+  width: 100%;
   border-radius: 0;
   border: none;
   user-select: none;
@@ -63,13 +71,15 @@
 }
 
 // button width
-:host([width="half"]) button,
-:host([width="half"]) a {
+:host([width="auto"]) {
+  width: auto;
+}
+
+:host([width="half"]) {
   width: 50%;
 }
 
-:host([width="full"]) button,
-:host([width="full"]) a {
+:host([width="full"]) {
   width: 100%;
 }
 
@@ -87,26 +97,27 @@
 // disabled styles
 :host([disabled]) {
   button,
+  span,
   a {
     pointer-events: none;
     opacity: 0.4;
   }
 }
 // icon positioning and styles
-:host([hastext][iconposition="start"]) .calcite-button--icon {
+:host([hastext][icon-position="start"]) .calcite-button--icon {
   margin-right: $baseline/3;
 }
 
-:host([hastext][iconposition="start"][dir="rtl"]) .calcite-button--icon {
+:host([hastext][icon-position="start"][dir="rtl"]) .calcite-button--icon {
   margin-right: 0;
   margin-left: $baseline/3;
 }
 
-:host([hastext][iconposition="end"]) .calcite-button--icon {
+:host([hastext][icon-position="end"]) .calcite-button--icon {
   margin-left: $baseline/3;
 }
 
-:host([hastext][iconposition="end"][dir="rtl"]) .calcite-button--icon {
+:host([hastext][icon-position="end"][dir="rtl"]) .calcite-button--icon {
   margin-left: 0;
   margin-right: $baseline/3;
 }
@@ -117,20 +128,20 @@
   top: 0;
 }
 
-:host([appearance="inline"][iconposition="start"]) .calcite-button--icon {
+:host([appearance="inline"][icon-position="start"]) .calcite-button--icon {
   margin-right: $baseline/4;
 }
 
-:host([appearance="inline"][iconposition="start"][dir="rtl"])
+:host([appearance="inline"][icon-position="start"][dir="rtl"])
   .calcite-button--icon {
   margin-left: $baseline/4;
   margin-right: 0;
 }
 
-:host([appearance="inline"][iconposition="end"]) .calcite-button--icon {
+:host([appearance="inline"][icon-position="end"]) .calcite-button--icon {
   margin-left: $baseline/4;
 }
-:host([appearance="inline"][iconposition="end"][dir="rtl"])
+:host([appearance="inline"][icon-position="end"][dir="rtl"])
   .calcite-button--icon {
   margin-left: 0;
   margin-right: $baseline/4;
@@ -166,17 +177,13 @@
 @mixin btn-solid($bg-color, $bg-color-hover, $bg-color-press, $color) {
   color: $color;
   background-color: $bg-color;
-  border: 1px solid $bg-color;
-  box-shadow: inset 0 0 0 1px transparent;
+  border: 1px solid transparent;
   &:hover,
   &:focus {
     background-color: $bg-color-hover;
-    box-shadow: inset 0 0 0 1px $bg-color;
   }
   &:active {
     background-color: $bg-color;
-    border-color: $bg-color-press;
-    box-shadow: inset 0 0 0 2px $bg-color-press;
   }
   & .calcite-button--icon {
     fill: $color;
@@ -190,9 +197,9 @@
   button,
   a {
     @include btn-solid(
-      var(--calcite-button-blue),
-      var(--calcite-button-blue-hover),
-      var(--calcite-button-blue-pressed),
+      var(--calcite-global-ui-blue),
+      var(--calcite-global-ui-blue-hover),
+      var(--calcite-global-ui-blue-pressed),
       var(--calcite-button-blue-solid-color)
     );
   }
@@ -201,9 +208,9 @@
   button,
   a {
     @include btn-solid(
-      var(--calcite-button-red),
-      var(--calcite-button-red-hover),
-      var(--calcite-button-red-pressed),
+      var(--calcite-global-ui-red),
+      var(--calcite-global-ui-red-hover),
+      var(--calcite-global-ui-red-pressed),
       var(--calcite-button-red-solid-color)
     );
   }
@@ -211,13 +218,23 @@
 :host([appearance="solid"][color="light"]) {
   button,
   a {
-    @include btn-solid($blk-010, $blk-000, $blk-020, $blk-240);
+    @include btn-solid(
+      var(--calcite-button-light),
+      var(--calcite-button-light-hover),
+      var(--calcite-button-light-pressed),
+      $blk-220
+      );
   }
 }
 :host([appearance="solid"][color="dark"]) {
   button,
   a {
-    @include btn-solid($blk-200, $blk-180, $blk-240, $blk-000);
+    @include btn-solid(
+      var(--calcite-button-dark),
+      var(--calcite-button-dark-hover),
+      var(--calcite-button-dark-pressed),
+      $blk-000
+    );
   }
 }
 
@@ -260,11 +277,11 @@
   a {
     @include btn-outline-clear(
       var(--calcite-button-outline-background),
-      var(--calcite-button-blue),
-      var(--calcite-button-blue-hover),
-      var(--calcite-button-blue-pressed),
-      var(--calcite-button-blue),
-      var(--calcite-button-blue-pressed)
+      var(--calcite-global-ui-blue),
+      var(--calcite-global-ui-blue-hover),
+      var(--calcite-global-ui-blue-pressed),
+      var(--calcite-global-ui-blue),
+      var(--calcite-global-ui-blue-pressed)
     );
   }
 }
@@ -273,11 +290,11 @@
   a {
     @include btn-outline-clear(
       var(--calcite-button-outline-background),
-      var(--calcite-button-red),
-      var(--calcite-button-red-hover),
-      var(--calcite-button-red-pressed),
-      var(--calcite-button-red),
-      var(--calcite-button-red-pressed)
+      var(--calcite-global-ui-red),
+      var(--calcite-global-ui-red-hover),
+      var(--calcite-global-ui-red-pressed),
+      var(--calcite-global-ui-red),
+      var(--calcite-global-ui-red-pressed)
     );
   }
 }
@@ -301,7 +318,7 @@
       var(--calcite-button-outline-background),
       $blk-200,
       $blk-180,
-      $blk-240,
+      $blk-220,
       var(--calcite-button-outline-color),
       var(--calcite-button-outline-pressed)
     );
@@ -312,11 +329,11 @@
   a {
     @include btn-outline-clear(
       transparent,
-      var(--calcite-button-blue),
-      var(--calcite-button-blue-hover),
-      var(--calcite-button-blue-pressed),
-      var(--calcite-button-blue),
-      var(--calcite-button-blue-pressed)
+      var(--calcite-global-ui-blue),
+      var(--calcite-global-ui-blue-hover),
+      var(--calcite-global-ui-blue-pressed),
+      var(--calcite-global-ui-blue),
+      var(--calcite-global-ui-blue-pressed)
     );
   }
 }
@@ -325,11 +342,11 @@
   a {
     @include btn-outline-clear(
       transparent,
-      var(--calcite-button-red),
-      var(--calcite-button-red-hover),
-      var(--calcite-button-red-pressed),
-      var(--calcite-button-red),
-      var(--calcite-button-red-pressed)
+      var(--calcite-global-ui-red),
+      var(--calcite-global-ui-red-hover),
+      var(--calcite-global-ui-red-pressed),
+      var(--calcite-global-ui-red),
+      var(--calcite-global-ui-red-pressed)
     );
   }
 }
@@ -353,9 +370,9 @@
       transparent,
       $blk-200,
       $blk-180,
-      $blk-240,
       $blk-220,
-      $blk-240
+      $blk-220,
+      $blk-220
     );
   }
 }
@@ -390,9 +407,9 @@
   button,
   a {
     @include btn-transparent(
-      var(--calcite-button-blue),
-      var(--calcite-button-blue-hover),
-      var(--calcite-button-blue-pressed)
+      var(--calcite-global-ui-blue),
+      var(--calcite-global-ui-blue-hover),
+      var(--calcite-global-ui-blue-pressed)
     );
   }
 }
@@ -401,9 +418,9 @@
   button,
   a {
     @include btn-transparent(
-      var(--calcite-button-red),
-      var(--calcite-button-red-hover),
-      var(--calcite-button-red-pressed)
+      var(--calcite-global-ui-red),
+      var(--calcite-global-ui-red-hover),
+      var(--calcite-global-ui-red-pressed)
     );
   }
 }
@@ -461,40 +478,40 @@
 }
 
 :host([appearance="inline"][color="blue"]) {
-  button,
+  span,
   a {
     @include btn-inline(
-      var(--calcite-button-blue),
-      var(--calcite-button-blue-hover),
-      var(--calcite-button-blue-inline-underline)
+      var(--calcite-global-ui-blue),
+      var(--calcite-global-ui-blue-hover),
+      var(--calcite-global-ui-blue-inline-underline)
     );
   }
 }
 
 :host([appearance="inline"][color="red"]) {
-  button,
+  span,
   a {
     @include btn-inline(
-      var(--calcite-button-red),
-      var(--calcite-button-red-hover),
-      var(--calcite-button-red-inline-underline)
+      var(--calcite-global-ui-red),
+      var(--calcite-global-ui-red-hover),
+      var(--calcite-global-ui-red-inline-underline)
     );
   }
 }
 :host([appearance="inline"][color="light"]) {
-  button,
+  span,
   a {
     @include btn-inline($blk-010, $blk-000, rgba($blk-000, 0.2));
   }
 }
 :host([appearance="inline"][color="dark"]) {
-  button,
+  span,
   a {
     @include btn-inline($blk-200, $blk-180, rgba($blk-180, 0.2));
   }
 }
 :host([appearance="inline"][dir="rtl"]) {
-  button,
+  span,
   a {
     background-position: 100% 100%, 100% 100%;
   }
