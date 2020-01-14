@@ -27,7 +27,7 @@
   }
   
   :host([theme="dark"]) {
-    --calcite-ui-blue: #{$ui-blue-dark};
+    --calcite-ui-blue: #0AA5FF;
     --calcite-ui-blue-hover: #{$ui-blue-hover-dark};
     --calcite-ui-blue-press: #{$ui-blue-press-dark};
     --calcite-ui-green: #{$ui-green-dark};
@@ -36,7 +36,7 @@
     --calcite-ui-yellow: #{$ui-yellow-dark};
     --calcite-ui-yellow-hover: #{$ui-yellow-hover-dark};
     --calcite-ui-yellow-press: #{$ui-yellow-press-dark};
-    --calcite-ui-red: #{$ui-red-dark};
+    --calcite-ui-red: #FE725D;
     --calcite-ui-red-hover: #{$ui-red-hover-dark};
     --calcite-ui-red-press: #{$ui-red-press-dark};
     --calcite-ui-background: #{$ui-background-dark};
