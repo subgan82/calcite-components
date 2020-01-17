@@ -8,10 +8,16 @@
   <title>Calcite Themes</title>
 
   <style>
+    h2 {
+      margin: 70px 0 20px 0;
+    }
     .demo-background-dark {
       background: #202020;
       color: white;
       padding: 1rem;
+    }
+    .content {
+      width: 80%;
     }
   </style>
   <link rel="stylesheet" href="https://webapps-cdn.esri.com/CDN/fonts/v1.4.1/fonts.css" />
@@ -24,7 +30,7 @@
   <calcite-button href="/">Home</calcite-button>
   <h1>Calcite Themes</h1>
 
-  <br />
+  <div class="content">
   <h2>Buttons</h2>
   <calcite-button title="blue solid button">blue solid button</calcite-button>
   <calcite-button title="red solid button" color='red'>red solid button</calcite-button>
@@ -87,8 +93,6 @@
   <calcite-button title="blue clear button" appearance='transparent' disabled>blue clear button</calcite-button>
   <calcite-button title="red clear button" appearance='inline' color='red' disabled>red clear button
   </calcite-button>
-  <br />
-  <br />
 
 
 
@@ -183,10 +187,12 @@
 
 
 
-
   <h2>Pagination</h2>
   <calcite-pagination total="20" num="5"></calcite-pagination>
-
+  <br>
+  <br>
+  <br>
+  <br>
 
 
 
@@ -202,9 +208,6 @@
   <br>
   <h3>Determinate</h3>
   <calcite-progress type="determinate" value="0.5" text="50% Complete (optional text)"></calcite-progress>
-  <br />
-  <br />
-  <br />
 
 
 
@@ -213,9 +216,48 @@
 
 
 
+  <h2>Radio Group</h2>
+    <calcite-radio-group>
+      <calcite-radio-group-item value="react" checked>React</calcite-radio-group-item>
+      <calcite-radio-group-item value="ember">Ember</calcite-radio-group-item>
+      <calcite-radio-group-item value="angular">Angular</calcite-radio-group-item>
+      <calcite-radio-group-item value="vue">Vue</calcite-radio-group-item>
+    </calcite-radio-group>
 
 
 
+
+
+
+
+
+    <h2>Sliders</h2>
+    <h3> </h3>
+  <calcite-slider id="mySlider" min="0" max="100" value="25" step="1" label="Temperature"></calcite-slider>
+  <br>
+  <calcite-slider min="0" max="100" min-value="50" max-value="85" step="1" min-label="Temperature range (lower)"
+    max-label="Temperature range (upper)"></calcite-slider>
+  <br>
+  <calcite-slider min="0" max="100" value="23" step="10" ticks="10" label="Temperature"></calcite-slider>
+  <br>
+  <calcite-slider min="0" max="100" min-value="23" max-value="46" step="1" ticks="10" label-handles precise
+    label="Temperature"></calcite-slider>
+  <br>
+  <calcite-slider min="0" max="100" value="23" step="10" ticks="10" label-ticks label="Temperature">
+  </calcite-slider>
+  <br>
+  <calcite-slider min="0" max="100" value="23" step="1" label="Temperature" precise></calcite-slider>
+  <br>
+  <calcite-slider min="0" max="100" min-value="50" max-value="85" step="1" min-label="Temperature range (lower)"
+    max-label="Temperature range (upper)" precise></calcite-slider>
+
+
+
+
+
+
+
+</div>
 
 
 
