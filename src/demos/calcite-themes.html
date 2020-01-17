@@ -20,7 +20,7 @@
   <script nomodule src="../build/calcite.js"></script>
 </head>
 
-<body>
+<body style="margin: 20px 0 0 50px;">
   <calcite-button href="/">Home</calcite-button>
   <h1>Calcite Themes</h1>
 
@@ -101,10 +101,139 @@
 
 
 <h2>Date</h2>
+  <div class="example-container" style="margin: 40px 0 100px 0;">
+    <calcite-date-picker id="dateWithNoInput" key="condition-value" min="1970-01-01" max="2030-12-31" start-of-week="0"
+      tabIndex="0" value="2000-11-27" no-calendar-input="true" show-calendar="true">
+    </calcite-date-picker>
+    <!--<input type="date" min="1970-01-01" max="2030-12-31" value="2019-11-27" /> -->
+    <script>
+      var dateSample = document.getElementById("dateSample");
+
+      dateSample.addEventListener("calciteDateChange", function (
+        e
+      ) {
+        dateSample.value = e.target.value;
+        console.log(
+          "Date selected <calcite-date>",
+          e.target.value,
+          e.target.valueAsDate
+        );
+      });
+
+      function toggleCalendar() {
+        var dateWithNoInput = document.getElementById("dateWithNoInput");
+        dateWithNoInput.showCalendar = !dateWithNoInput.showCalendar;
+      }
+    </script>
+  </div>
 
 
 
 
+
+
+<h2>Notice</h2>
+  <calcite-notice color="blue" id="notice-one" scale="s" active dismissible>
+    <div slot="notice-title">Welcome to your website</div>
+    <div slot="notice-message">
+      This is going to be great!
+    </div>
+  </calcite-notice>
+  <br>
+  <br>
+
+  <calcite-notice color="green" id="notice-one" scale="s" active dismissible>
+    <div slot="notice-title">Your project was successfully created</div>
+    <div slot="notice-message">
+      You are now able to share it with your friends
+    </div>
+    <calcite-button slot="notice-link" title="my action" appearance="inline">Share</calcite-button>
+  </calcite-notice>
+  <br>
+  <br>
+
+  <calcite-notice color="yellow" id="notice-one" scale="s" active dismissible>
+    <div slot="notice-title">Something kind of worked</div>
+    <div slot="notice-message">
+      One part of that thing you wanted to do didn't work as expected 
+    </div>
+    <calcite-button slot="notice-link" title="my action" appearance="inline">View item</calcite-button>
+  </calcite-notice>
+  <br>
+  <br>
+
+  <calcite-notice color="red" id="notice-one" scale="s" active dismissible>
+    <div slot="notice-title">Something failed</div>
+    <div slot="notice-message">
+      That thing you wanted to do didn't work as expected
+    </div>
+    <calcite-button slot="notice-link" title="my action" appearance="inline">Retry</calcite-button>
+  </calcite-notice>
+  <br>
+  <br>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <h2>Pagination</h2>
+  <calcite-pagination total="20" num="5"></calcite-pagination>
+
+
+
+
+
+
+
+
+  <h2>Calcite Progress</h1>
+  <h3>Indeterminate</h3>
+  <calcite-progress type="indeterminate"></calcite-progress>
+  <br>
+  <br>
+  <br>
+  <h3>Determinate</h3>
+  <calcite-progress type="determinate" value="0.5" text="50% Complete (optional text)"></calcite-progress>
+  <br />
+  <br />
+  <br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 </body>
 
