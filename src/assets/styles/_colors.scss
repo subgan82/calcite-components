@@ -2,6 +2,8 @@
     --calcite-ui-blue: #{$ui-blue};
     --calcite-ui-blue-hover: #{$ui-blue-hover};
     --calcite-ui-blue-press: #{$ui-blue-press};
+    --calcite-blue-accessible: #{$h-bb-070};
+    --calcite-red-accessible: #{$h-rr-070};
     --calcite-ui-green: #{$ui-green};
     --calcite-ui-green-hover: #{$ui-green-hover};
     --calcite-ui-green-press: #{$ui-green-press};
@@ -30,6 +32,8 @@
     --calcite-ui-blue: #{$ui-blue-dark};
     --calcite-ui-blue-hover: #{$ui-blue-hover-dark};
     --calcite-ui-blue-press: #{$ui-blue-press-dark};
+    --calcite-blue-accessible: #{$d-bb-420};
+    --calcite-red-accessible: #{$d-rr-420};
     --calcite-ui-green: #{$ui-green-dark};
     --calcite-ui-green-hover: #{$ui-green-hover-dark};
     --calcite-ui-green-press: #{$ui-green-press-dark};
@@ -54,6 +58,8 @@
   }
 
   .test-theme {
+    --calcite-blue-accessible: blue;
+    --calcite-red-accessible: green;
     --calcite-ui-blue: blue;
     --calcite-ui-red: green;
     --calcite-ui-blue-hover: blue;

@@ -4,8 +4,6 @@
   display: inline-block;
   width: auto;
   vertical-align: middle;
-  --calcite-blue-accessible: #{$h-bb-070};
-  --calcite-red-accessible: #{$h-rr-070};
   --calcite-button-light: #{$blk-010};
   --calcite-button-light-hover: #{$blk-000};
   --calcite-button-light-press: #{$blk-020};
@@ -23,8 +21,6 @@
 
 // dark theme
 :host([theme="dark"]) {
-  --calcite-blue-accessible: #{$d-bb-420};
-  --calcite-red-accessible: #{$d-rr-420};
   --calcite-button-light: #{$blk-010};
   --calcite-button-light-hover: #{$blk-020};
   --calcite-button-light-press: #{$blk-000};
