@@ -58,12 +58,31 @@
   }
 
   .test-theme {
-    --calcite-blue-accessible: blue;
-    --calcite-red-accessible: green;
-    --calcite-ui-blue: blue;
-    --calcite-ui-red: green;
-    --calcite-ui-blue-hover: blue;
-    --calcite-ui-red-hover: green;
-    --calcite-ui-blue-press: blue;
-    --calcite-ui-red-press: green;  
+    --calcite-blue-accessible: SlateBlue;
+    --calcite-red-accessible: DeepPink;
+    --calcite-ui-blue: SlateBlue;
+    --calcite-ui-blue-hover: MediumSlateBlue;
+    --calcite-ui-red: DeepPink;
+    --calcite-ui-red-hover: HotPink;
+    --calcite-ui-blue-press: SlateBlue;
+    --calcite-ui-red-press: DeepPink;  
+    --calcite-ui-green: LawnGreen;
+    --calcite-ui-green-hover: LightGreen;
+    --calcite-ui-green-press: LawnGreen;
+    --calcite-ui-yellow: gold;
+    --calcite-ui-yellow-hover: orange;
+    --calcite-ui-yellow-press: gold;
+    --calcite-ui-background: #{$ui-background};
+    --calcite-ui-foreground: GhostWhite;
+    --calcite-ui-foreground-hover: Gainsboro;
+    --calcite-ui-foreground-press: GhostWhite;
+    --calcite-ui-text-1: #{$ui-text-1};
+    --calcite-ui-text-2: #{$ui-text-2};
+    --calcite-ui-text-3: #{$ui-text-3};
+    --calcite-ui-border-1: #{$ui-border-1};
+    --calcite-ui-border-2: #{$ui-border-2};
+    --calcite-ui-border-3: #{$ui-border-3};
+    --calcite-ui-border-hover: #{$ui-border-hover};
+    --calcite-ui-border-press: #{$ui-border-press};
+    --calcite-border-radius: 6px;
   }
