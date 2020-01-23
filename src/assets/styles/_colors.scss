@@ -1,4 +1,6 @@
 :root {
+    --calcite-blue-accessible: #{$h-bb-070};
+    --calcite-red-accessible: #{$h-rr-070};
     --calcite-ui-blue: #{$ui-blue};
     --calcite-ui-blue-hover: #{$ui-blue-hover};
     --calcite-ui-blue-press: #{$ui-blue-press};
@@ -27,6 +29,8 @@
   }
   
   :host([theme="dark"]) {
+    --calcite-blue-accessible: #{$d-bb-420};
+    --calcite-red-accessible: #{$d-rr-420};
     --calcite-ui-blue: #{$ui-blue-dark};
     --calcite-ui-blue-hover: #{$ui-blue-hover-dark};
     --calcite-ui-blue-press: #{$ui-blue-press-dark};
