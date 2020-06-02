@@ -8,7 +8,6 @@ import {
   Host,
   Watch,
   Build,
-  State,
 } from "@stencil/core";
 import { getElementProp } from "../../utils/dom";
 @Component({
@@ -85,21 +84,14 @@ export class CalciteRadioGroupItem {
     this.mutationObserver.disconnect();
   }
 
-  componentDidLoad() {
-    // only use default slot content in browsers that support shadow dom
-    // or if ie11 has no label provided (#374)
-    const label = this.el.querySelector("label");
-    this.useFallback = !label || label.textContent === "";
-  }
-
   render() {
-    const { checked, useFallback, value } = this;
-    const scale = getElementProp(this.el, "scale", "m");
-    const appearance = getElementProp(this.el, "appearance", "m");
-    const layout = getElementProp(this.el, "layout", "m");
+    const { checked, el, icon, iconPosition, value } = this;
+    const scale = getElementProp(el, "scale", "m");
+    const appearance = getElementProp(el, "appearance", "m");
+    const layout = getElementProp(el, "layout", "m");
 
     const iconEl = (
-      <calcite-icon class="radio-group-item-icon" icon={this.icon} scale="s" />
+      <calcite-icon class="radio-group-item-icon" icon={icon} scale="s" />
     );
 
     return (
@@ -111,10 +103,10 @@ export class CalciteRadioGroupItem {
         layout={layout}
       >
         <label>
-          {this.icon && this.iconPosition === "start" ? iconEl : null}
-          <slot>{useFallback ? value : ""}</slot>
+          {icon && iconPosition === "start" ? iconEl : null}
+          <slot>{value}</slot>
           <slot name="input" />
-          {this.icon && this.iconPosition === "end" ? iconEl : null}
+          {icon && iconPosition === "end" ? iconEl : null}
         </label>
       </Host>
     );
@@ -134,7 +126,6 @@ export class CalciteRadioGroupItem {
   //  Private State/Props
   //
   //--------------------------------------------------------------------------
-  @State() private useFallback: boolean;
 
   private inputProxy: HTMLInputElement;
 
